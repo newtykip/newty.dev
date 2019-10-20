@@ -16,13 +16,14 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@lekoarts/gatsby-theme-cara": "^1.0.6",
-    "gatsby": "^2.15.28",
-    "gatsby-plugin-google-analytics": "^2.1.19",
-    "gatsby-plugin-netlify": "^2.1.17",
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1",
+    "@lekoarts/gatsby-theme-cara": "^1.0.8",
+    "gatsby": "^2.16.5",
+    "gatsby-plugin-google-analytics": "^2.1.23",
+    "gatsby-plugin-netlify": "^2.1.22",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
     "react-helmet": "^5.2.1",
+    "react-social-icons": "^4.1.0",
     "react-typed": "^1.2.0"
   },
   "devDependencies": {
