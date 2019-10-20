@@ -1,9 +1,9 @@
 {
   "private": true,
-  "name": "cara",
-  "description": "Playful and Colorful One-Page portfolio featuring Parallax effects and animations",
+  "name": "website",
+  "description": "My website, developed with gatsby and gatsby-theme-cara.",
   "version": "0.0.9",
-  "author": "LekoArts <hello@lekoarts.de>",
+  "author": "LekoArts & Jacob Smith",
   "license": "MIT",
   "starter-name": "gatsby-starter-portfolio-cara",
   "scripts": {
@@ -17,15 +17,15 @@
   },
   "dependencies": {
     "@lekoarts/gatsby-theme-cara": "^1.0.6",
-    "gatsby": "^2.13.72",
-    "gatsby-plugin-google-analytics": "^2.1.8",
-    "gatsby-plugin-manifest": "^2.2.6",
-    "gatsby-plugin-netlify": "^2.1.6",
-    "gatsby-plugin-offline": "^2.2.7",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "gatsby": "^2.15.28",
+    "gatsby-plugin-google-analytics": "^2.1.19",
+    "gatsby-plugin-netlify": "^2.1.17",
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1",
+    "react-helmet": "^5.2.1",
+    "react-typed": "^1.2.0"
   },
   "devDependencies": {
-    "cross-env": "^5.2.0"
+    "cross-env": "^6.0.3"
   }
 }
