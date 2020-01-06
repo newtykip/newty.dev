@@ -11,10 +11,7 @@ const NotFoundPage = () => (
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src={withPrefix("404.js")} type="text/javascript"></script>
 
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css"
-      />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css" />
       <link rel="stylesheet" type="text/css" href={withPrefix("404.css")} />
     </Helmet>
 
