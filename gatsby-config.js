@@ -4,7 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    siteTitleAlt: "newt",
+    siteTitleAlt: "Newt",
     siteUrl: "https://jsmiith.xyz/",
     siteDescription: "",
     siteLanguage: "en",

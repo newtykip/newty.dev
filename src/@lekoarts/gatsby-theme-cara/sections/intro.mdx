@@ -1,18 +1,23 @@
 import Typed from 'react-typed';
+import Twemoji from 'react-twemoji';
 
 <h1>
-    <Typed strings={[
-        'Hi, I\'m Newt.',
-        'Hola, soy Newt.', 
-        'Salut, je suis Newt.', 
-        'Hi, ich bin Newt.', 
-        'こんにちは、Newtです。',
-        'Hi, I\'m Newt.'
-    ]}
-    typeSpeed={40}
-    backSpeed={50}
-    loop={false}
-    />
+    <Twemoji>
+        <span style={{ paddingRight: '25px' }}>👋</span>
+        <Typed strings={[
+            'Hi, I\'m Newt.',
+            'Hola, soy Newt.', 
+            'Salut, je suis Newt.', 
+            'Hi, ich bin Newt.', 
+            'こんにちは、Newtです。',
+            'Hi, I\'m Newt.'
+        ]}
+        typeSpeed={40}
+        backSpeed={50}
+        loop={false}
+        />
+    </Twemoji>
 </h1>
 
 I'm a 13 year old student, programmer, and photographer from the UK.
+<Twemoji>🎒 🖥 📸 🇬🇧</Twemoji>
