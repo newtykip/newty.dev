@@ -1,141 +1,141 @@
 * {
-    margin: 0;
+  margin: 0;
 }
 
 body {
-    font-family: monospace;
-    font-size: 14pt;
+  font-family: monospace;
+  font-size: 14pt;
 }
 
 #container {
-    margin: 40px 0 0 40px;
-    width: fit-content;
-    background: rgba(255, 255, 255, 0.4);
-    padding: 20px;
+  margin: 40px 0 0 40px;
+  width: fit-content;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 20px;
 }
 
 #profile {
-    width: 100px;
-    height: 100px;
-    background: url("../img/pic.jpg");
-    background-size: cover;
-    margin: 10px;
-    animation: zzz 3s steps(4) infinite, float 2s ease-in-out infinite alternate;
-    /* image-rendering: pixelated; */
+  width: 100px;
+  height: 100px;
+  background: url("../img/pfp.png");
+  background-size: cover;
+  margin: 10px;
+  animation: zzz 3s steps(4) infinite, float 2s ease-in-out infinite alternate;
 }
 
 #name {
-    font-weight: bold;
-    font-size: 18pt;
+  font-weight: bold;
+  font-size: 18pt;
 }
 
 #links {
-    margin-left: 15px;
-    border-left: 2px #E3E3E3 solid;
+  margin-left: 15px;
+  border-left: 2px #E3E3E3 solid;
 }
 
 #links>a {
-    display: table;
-    margin: 0 0 4px 10px;
-    /* transition: all .1s cubic-bezier(0.455, 0.03, 0.515, 0.955); */
+  display: table;
+  margin: 0 0 4px 10px;
+  color: #424242;
+  text-decoration: none;
+  transition: all .1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 #links>a:hover {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
 a:visited {
-    color: rgb(0, 0, 238);
+  color: rgb(0, 0, 238);
 }
 
 #paper {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -999;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -999;
 }
 
 #song {
-    opacity: 0;
-    color: #888;
-    font-size: 10pt;
-    transition: opacity 1s;
+  opacity: 0;
+  color: #888;
+  font-size: 10pt;
+  transition: opacity 1s;
 }
 
 #song::before {
-    content: "♫ ";
-    color: #444;
+  content: "♫ ";
+  color: #444;
 }
 
 #song.visible {
-    opacity: 1;
+  opacity: 1;
 }
 
 #song a {
-    color: #888;
-    text-decoration: none;
+  color: #888;
+  text-decoration: none;
 }
 
 #song a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-
 @keyframes zzz {
-    to {
-        background-position-x: 2000px;
-    }
+  to {
+    background-position-x: 2000px;
+  }
 }
 
 @keyframes float {
-    from {
-        background-position-y: -1px;
-    }
+  from {
+    background-position-y: -1px;
+  }
 
-    to {
-        background-position-y: 1px;
-    }
+  to {
+    background-position-y: 1px;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
-    body {
-        background: #000;
-    }
+  body {
+    background: #000;
+  }
 
-    #container {
-        background: rgba(255, 255, 255, 0.2);
-    }
+  #container {
+    background: rgba(255, 255, 255, 0.2);
+  }
 
-    #name {
-        color: #fff;
-    }
+  #name {
+    color: #fff;
+  }
 
-    #song {
-        color: #ddd;
-    }
+  #song {
+    color: #ddd;
+  }
 
-    #song::before {
-        color: #bbb;
-    }
+  #song::before {
+    color: #bbb;
+  }
 
-    #links>a {
-        color: #69b7ff;
-    }
+  #links>a {
+    color: #69b7ff;
+  }
 
-    a:visited {
-        color: #69b7ff;
-    }
+  a:visited {
+    color: #69b7ff;
+  }
 }
 
 @media only screen and (pointer: coarse) and (hover: none) {
-    #container {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        zoom: 2;
-        max-width: 70%;
-    }
+  #container {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    zoom: 2;
+    max-width: 70%;
+  }
 }
