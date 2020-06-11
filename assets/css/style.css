@@ -98,36 +98,6 @@ a:visited {
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #000;
-  }
-
-  #container {
-    background: rgba(255, 255, 255, 0.2);
-  }
-
-  #name {
-    color: #fff;
-  }
-
-  #song {
-    color: #ddd;
-  }
-
-  #song::before {
-    color: #bbb;
-  }
-
-  #links>a {
-    color: #69b7ff;
-  }
-
-  a:visited {
-    color: #69b7ff;
-  }
-}
-
 @media only screen and (pointer: coarse) and (hover: none) {
   #container {
     margin: 0;
