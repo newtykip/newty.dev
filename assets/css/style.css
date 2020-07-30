@@ -17,7 +17,7 @@ body {
 #profile {
   width: 100px;
   height: 100px;
-  background: url("../img/pfp.gif");
+  background: url("../img/sylv.gif");
   background-size: cover;
   margin: 10px;
   animation: zzz 3s steps(4) infinite, float 2s ease-in-out infinite alternate;
