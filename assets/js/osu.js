@@ -1,3 +1,4 @@
+// Fetch information about my osu profile
 fetch(new URL('https://me.newtt.pw/api/osu'))
     .then(res => res.json())
     .then(res => { document.getElementById('rank').innerHTML = `(#${res.rank})`; })
