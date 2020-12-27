@@ -76,7 +76,9 @@ a:visited {
 #song a {
   color: #888;
   text-decoration: none;
+  opacity: 1;
 }
+
 
 #song a:hover {
   text-decoration: underline;
