@@ -4,14 +4,13 @@
 
 body {
   font-family: monospace;
-  font-size: 16pt;
   background-color: rgb(248, 248, 248);
 }
 
 #container {
   margin: 40px 0 0 40px;
   width: fit-content;
-  background: rgba(248, 248, 248, 0.4);
+  background: rgba(248, 248, 248, 0.25);
   padding: 30px;
 }
 
@@ -26,12 +25,14 @@ body {
 
 #name {
   font-weight: bold;
-  font-size: 22pt;
+  font-size: 29px;
 }
 
 #links {
   margin-left: 15px;
+  margin-top: 10px;
   border-left: 2px #E3E3E3 solid;
+  font-size: 21px;
 }
 
 #links>a {
@@ -61,7 +62,7 @@ a:visited {
 #song {
   opacity: 0;
   color: #888;
-  font-size: 12pt;
+  font-size: 16px;
   transition: opacity 1s;
 }
 
@@ -101,7 +102,7 @@ a:visited {
   }
 }
 
-@media only screen and (pointer: coarse) and (hover: none) {
+@media only screen and (max-width: 600px) {
   #container {
     margin: 0;
     position: absolute;
@@ -109,6 +110,27 @@ a:visited {
     left: 50%;
     transform: translate(-50%, -50%);
     zoom: 2;
-    max-width: 70%;
+    max-width: 75%;
   }
+
+  #name { font-size: 20px; }
+  #song { font-size: 12px; }
+  #links { font-size: 16px; }
+  #paper { visibility: hidden; }
+}
+
+@media only screen and (min-width: 600px) {
+  #container {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    zoom: 2;
+    max-width: 75%;
+  }
+
+  #name { font-size: 30px; }
+  #song { font-size: 12px; }
+  #links { font-size: 16px; }
 }
