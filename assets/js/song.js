@@ -30,6 +30,6 @@ const updateSong = () => {
         .catch(err => console.error('There was an issue fetching data about newt\'s current song. Sorry!', err));
 };
 
-// Check for a new song every 10 seconds
-setInterval(updateSong, 10000);
+// Check for a new song every 5 seconds
+setInterval(updateSong, 5000);
 updateSong(); // Initial run
