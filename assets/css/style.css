@@ -4,14 +4,15 @@
 
 body {
   font-family: monospace;
-  font-size: 14pt;
+  font-size: 16pt;
+  background-color: rgb(248, 248, 248);
 }
 
 #container {
   margin: 40px 0 0 40px;
   width: fit-content;
-  background: rgba(255, 255, 255, 0.4);
-  padding: 20px;
+  background: rgba(248, 248, 248, 0.4);
+  padding: 30px;
 }
 
 #profile {
@@ -19,13 +20,13 @@ body {
   height: 100px;
   background: url("../img/sylv.gif");
   background-size: cover;
-  margin: 10px;
+  margin-top: 10px;
   animation: zzz 3s steps(4) infinite, float 2s ease-in-out infinite alternate;
 }
 
 #name {
   font-weight: bold;
-  font-size: 18pt;
+  font-size: 22pt;
 }
 
 #links {
@@ -60,7 +61,7 @@ a:visited {
 #song {
   opacity: 0;
   color: #888;
-  font-size: 10pt;
+  font-size: 12pt;
   transition: opacity 1s;
 }
 
