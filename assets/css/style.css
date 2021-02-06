@@ -10,6 +10,7 @@ body {
 #container {
   margin: 40px 0 0 40px;
   width: fit-content;
+  min-width: 550px;
   background: rgba(248, 248, 248, 0.25);
   padding: 30px;
 }
