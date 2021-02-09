@@ -21,7 +21,6 @@ body {
   background: url("../img/sylv.gif");
   background-size: cover;
   margin-top: 10px;
-  animation: zzz 3s steps(4) infinite, float 2s ease-in-out infinite alternate;
 }
 
 #name {
@@ -90,16 +89,6 @@ a:visited {
 @keyframes zzz {
   to {
     background-position-x: 2000px;
-  }
-}
-
-@keyframes float {
-  from {
-    background-position-y: -1px;
-  }
-
-  to {
-    background-position-y: 1px;
   }
 }
 
