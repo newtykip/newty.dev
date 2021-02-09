@@ -1,6 +1,6 @@
 // Function to update the song
 const updateSong = () => {
-    fetch(new URL('https://me.newtt.pw/api/song'))
+    fetch(new URL('https://about.newtt.me/scrobbling'))
         .then(res => res.json())
         .then(res => {
             // Fetch the element
@@ -8,9 +8,14 @@ const updateSong = () => {
 
             if (!res.hasOwnProperty('message')) {
                 // Update the content of the element
-                const artist = res.artists[0].name.toLowerCase();
+                const artist = res.type === 'spotify' ? res.artists[0].name.toLowerCase() : res.artist;
                 const song = res.name.toLowerCase();
-                el.innerHTML = ` currently listening to: <a href="${res.url}">${artist} - ${song}</a>`;
+            
+                switch (res.type) {
+                    case 'spotfy': el.innerHTML = ` currently listening to: <a href="${res.url}">${artist} - ${song}</a>`;
+                    case 'soundcloud': el.innerHTML = ` currently listening to: <a href="${res.url}"${artist} - ${song}</a>`;
+                    case 'lastfm': el.innerHTML = ` currently listening to: ${artist} - ${song}`;
+                }
                 
                 // Ensure that the song is visible
                 if (!el.classList.contains('visible')) {
