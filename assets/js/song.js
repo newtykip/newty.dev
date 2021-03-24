@@ -3,7 +3,7 @@ const el = document.getElementById('song');
 
 // Function to update the song
 const updateSong = () => {
-    fetch(new URL('http://about.newtt.me/api/scrobbling'))
+    fetch(new URL('https://about.newtt.me/api/scrobbling'))
         .then(res => res.json())
         .then(res => {
             if (!res.hasOwnProperty('message')) {
