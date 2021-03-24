@@ -3,19 +3,15 @@ const el = document.getElementById('song');
 
 // Function to update the song
 const updateSong = () => {
-    fetch(new URL('http://localhost:3000/api/scrobbling'))
+    fetch(new URL('http://about.newtt.me/api/scrobbling'))
         .then(res => res.json())
         .then(res => {
             if (!res.hasOwnProperty('message')) {
                 // Update the content of the element
-                const artist = res.type === 'spotify' ? res.artists[0].name.toLowerCase() : res.artist.toLowerCase();
-                const song = res.name.toLowerCase();
-                let msg = ' currently listening to: ';
-
-                if (res.type === 'spotify' || res.type === 'soundcloud') msg += `<a href="${res.url}">${artist} - ${song}</a>`;
-                else msg += `${artist} - ${song}`;
-
-                el.innerHTML = msg;
+                const artist = res.artist.toLowerCase();
+                const song = res.title.toLowerCase();
+                
+                el.innerHTML = ` currently listening to: <a href="${res.yt.url}">${artist} - ${song}</a>`;
                 
                 // Ensure that the song is visible
                 if (!el.classList.contains('visible')) {
