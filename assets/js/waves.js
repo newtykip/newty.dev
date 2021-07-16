@@ -4,6 +4,7 @@ var path = new Path();
 var mousePos = view.center / 2;
 var pathHeight = mousePos.y;
 path.fillColor = 'red';
+path.fillColor.brightness = 0.9;
 var hue = Math.floor(Math.random() * 360);
 initializePath();
 
