@@ -6,7 +6,7 @@ const updateSong = () => {
     fetch(new URL('https://about.newtt.me/api/scrobbling'))
         .then(res => res.json())
         .then(res => {
-            if (!res.hasOwnProperty('message')) {
+            if (res.playing) {
                 // Update the content of the element
                 const artist = res.artist.toLowerCase();
                 const song = res.title.toLowerCase();
