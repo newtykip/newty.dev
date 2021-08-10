@@ -1,4 +1,2 @@
 User-Agent: *
 Allow: /
-
-Sitemap: https://newtt.pw/sitemap.xmls
