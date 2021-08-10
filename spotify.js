@@ -8,10 +8,9 @@ const updateSong = () => {
         .then(res => {
             if (res.playing) {
                 // Update the content of the element
-                const artist = res.artist.toLowerCase();
-                const song = res.title.toLowerCase();
-                
-                el.innerHTML = `listening to: <a href="${res.yt.url}">${artist} - ${song}</a>`;
+	            const artist = res.artists[0].name.toLowerCase();
+	            const song = res.name.toLowerCase();
+                el.innerHTML = `newt ${res.isPlaying ? 'is currently' : 'was most recently'} listening to: <a href="${res.url}">${artist} - ${song}</a>`;
                 
                 // Ensure that the song is visible
                 if (!el.classList.contains('visible')) {
