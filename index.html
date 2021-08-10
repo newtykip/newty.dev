@@ -1,60 +1,79 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<!-- Primary Meta Tags -->
+		<title>newt!</title>
+		<meta name="title" content="newt!" />
+		<meta name="description" content="フェムボーイごみ | programmer | streamer" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="Cache-Control" content="max-age=3600" />
+		<meta http-equiv="X-Frame-Options" content="DENY" />
+		<meta http-equiv="X-XSS-Protection" content="1; mode=block" />
 
-<head>
-	<!-- Primary Meta Tags -->
-	<title>newt!</title>
-	<meta name="title" content="newt!">
-	<meta name="description" content="フェムボーイごみ | programmer | streamer">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Cache-Control" content="max-age=3600">
-	<meta http-equiv="X-Frame-Options" content="DENY">
-	<meta http-equiv="X-XSS-Protection" content="1; mode=block">
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://newtt.me/" />
+		<meta property="og:title" content="newt!" />
+		<meta property="og:description" content="minor | programmer | streamer" />
+		<meta property="og:image" content="https://newtt.me/img/meow.png" />
 
-	<!-- Open Graph / Facebook -->
-	<meta property="og:type" content="website">
-	<meta property="og:url" content="https://newtt.me/">
-	<meta property="og:title" content="newt!">
-	<meta property="og:description" content="minor | programmer | streamer">
-	<meta property="og:image" content="https://newtt.me/assets/img/fav.png">
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://newtt.me/" />
+		<meta property="twitter:title" content="newt!" />
+		<meta property="twitter:description" content="minor | programmer | streamer" />
+		<meta property="twitter:image" content="https://newtt.me/img/meow.png" />
 
-	<!-- Twitter -->
-	<meta property="twitter:card" content="summary_large_image">
-	<meta property="twitter:url" content="https://newtt.me/">
-	<meta property="twitter:title" content="newt!">
-	<meta property="twitter:description" content="minor | programmer | streamer">
-	<meta property="twitter:image" content="https://newtt.me/assets/img/fav.png">
+		<!-- Pinterest confirmation -->
+		<meta name="p:domain_verify" content="c291a21e99c7900b2d81ff3bb70cc322" />
 
-	<!-- Pinterest confirmation -->
-	<meta name="p:domain_verify" content="c291a21e99c7900b2d81ff3bb70cc322" />
+		<!-- Links and scripts-->
+		<link rel="canonical" href="https://newtt.me/" />
+		<link rel="icon" href="./img/meow.png" />
 
-	<!-- Links and scripts-->
-	<link rel="canonical" href="https://newtt.me/">
-	<link rel="icon" href="./assets/img/fav.png">
+		<link rel="stylesheet" href="./style.css" />
+	</head>
 
-	<link rel="stylesheet" href="./assets/css/style.css">
-	<link rel="stylesheet" href="./assets/css/fontawesome.min.css">
-</head>
+	<body>
+		<main>
+			<h1 class="logo"><a href="/">newtykins</a></h1>
+			<p class="type-primary" id="song"><a href="/">song</a></p>
+			<p class="intro type-primary">
+				Student programmer providing simplistic solutions to modern problems.
+			</p>
+			<footer>
+				<div class="footer-content">
+					<p>
+						Check out my <a href="https://github.com/newtykins">GitHub</a>. Follow me on
+						<a href="https://twitch.tv/newtykin">Twitch</a>. Here’s my
+						<a href="mailto:newtykins@outlook.com">Email</a>.
+					</p>
+				</div>
+			</footer>
+		</main>
 
-<body>
-	<div id="container">
-		<div id="profile" title="sylv"></div>
-		<span id="name">newt!</span>
-		<span id="song"></span>
-		<div id="links">
-			<a href="https://github.com/newtykins"><i class="fab fa-github-square"></i> github</a>
-			<a href="https://twitter.com/newtykins"><i class="fab fa-twitter-square"></i> twitter</a>
-			<a href="https://twitch.tv/newtykin"><i class="fab fa-twitch"></i> twitch</a>
-			<a href="https://www.youtube.com/channel/UCZ_qnC2IB3dbyNj7ueq_mcA"><i class="fab fa-youtube"></i> youtube</a>
-			<a href="https://osu.ppy.sh/users/16009610"><i class="fas fa-music"></i> osu! <span id="rank"></span></a>
-		</div>
-	</div>
-	<canvas id="paper" resize></canvas>
-
-	<script src="./assets/js/osu.js" type="text/javascript"></script>
-	<script src="./assets/js/song.js" type="text/javascript"></script>
-	<script src="./assets/js/paper-full.min.js" type="text/javascript"></script>
-	<script src="./assets/js/waves.js" type="text/paperscript" canvas="paper"></script>
-</body>
-
+		<script src="./js/song.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+			integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+		<script>
+			VANTA.NET({
+				el: 'html',
+				mouseControls: true,
+				touchControls: false,
+				gyroControls: false,
+				minHeight: window.innerHeight,
+				minWidth: window.innerWidth,
+				backgroundColor: 0x0f0f10,
+				color: 0xffffff,
+				showDots: false,
+				scale: 0.5,
+				points: 7.0,
+			});
+		</script>
+	</body>
 </html>

@@ -3,7 +3,7 @@ const el = document.getElementById('song');
 
 // Function to update the song
 const updateSong = () => {
-    fetch(new URL('https://about.newtt.me/api/scrobbling'))
+    fetch(new URL('https://about.newtt.me/api/np'))
         .then(res => res.json())
         .then(res => {
             if (res.playing) {
@@ -11,7 +11,7 @@ const updateSong = () => {
                 const artist = res.artist.toLowerCase();
                 const song = res.title.toLowerCase();
                 
-                el.innerHTML = ` currently listening to: <a href="${res.yt.url}">${artist} - ${song}</a>`;
+                el.innerHTML = `listening to: <a href="${res.yt.url}">${artist} - ${song}</a>`;
                 
                 // Ensure that the song is visible
                 if (!el.classList.contains('visible')) {
