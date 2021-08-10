@@ -141,6 +141,8 @@ html {
 	box-sizing: border-box;
 	user-select: none;
 	scroll-behavior: smooth;
+	overflow-x: hidden;
+	background: #0f0f10;
 }
 
 .canvas-container {
@@ -192,10 +194,7 @@ main {
 	grid-area: header;
 	opacity: 0;
 	position: relative;
-	top: 2em;
-}
-
-#song a {
+	top: 90%;
 	font-size: 2.5rem;
 	font-weight: 600;
 	line-height: 0.8;
@@ -246,11 +245,31 @@ footer .footer-content {
 	:root {
 		--v-space: 4rem;
 	}
+
 	html {
 		font-size: 14px;
+		max-width: max-content;
 	}
+
 	main {
 		grid-template-columns: 1fr 8fr 2fr 1fr;
+	}
+
+	.logo a {
+		font-size: 4rem;
+	}
+
+	#song {
+		font-size: 2.5rem;
+		line-height: 1.5;
+	}
+
+	.type-primary {
+		font-size: 2.5rem;
+	}
+
+	.footer-content {
+		font-size: 2rem;
 	}
 }
 
@@ -258,9 +277,11 @@ footer .footer-content {
 	:root {
 		--v-space: 3rem;
 	}
+
 	html {
 		font-size: 12px;
 	}
+
 	main {
 		grid-template-columns: 1fr 10fr 0fr 1fr;
 	}
