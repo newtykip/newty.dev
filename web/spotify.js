@@ -38,4 +38,4 @@ const updateSong = () => {
 
 // Check for a new song every 5 seconds
 setInterval(updateSong, 5000);
-updateSong(); // Initial run
+updateSong();
