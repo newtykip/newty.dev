@@ -187,6 +187,7 @@ main {
 	font-weight: 700;
 	line-height: 0.8;
 	text-decoration: none;
+	white-space: nowrap;
 }
 
 #song {
@@ -212,8 +213,7 @@ main {
 }
 
 .intro {
-	margin: var(--v-space) 0;
-
+	margin: 12rem 0;
 	grid-area: intro;
 	align-self: end;
 }
