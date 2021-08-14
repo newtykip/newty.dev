@@ -43,7 +43,7 @@ logger.twitch('Connected to Twitch PubSub!');
 const spotify = new SpotifyWebApi({
     clientId: process.env.SPOTIFYID,
     clientSecret: process.env.SPOTIFYSECRET,
-    redirectUri: 'https://about.newtt.me/',
+    redirectUri: process.env.SPOTIFYREDIRECT,
 });
 
 spotify.authorizationCodeGrant(process.env.SPOTIFYGRANT).then(

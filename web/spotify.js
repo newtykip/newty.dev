@@ -3,7 +3,7 @@ const el = document.getElementById('song');
 
 // Update the song
 const updateSong = () => {
-    fetch(new URL('http://localhost:8080/api/np'))
+    fetch(new URL('https://newtt.me/api/np'))
         .then(res => res.json())
         .then(res => {
             if (res.isPlaying) {
