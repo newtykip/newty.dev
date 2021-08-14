@@ -1,9 +1,9 @@
 // Fetch the element
 const el = document.getElementById('song');
 
-// Function to update the song
+// Update the song
 const updateSong = () => {
-    fetch(new URL('https://about.newtt.me/api/np'))
+    fetch(new URL('http://localhost:8080/api/np'))
         .then(res => res.json())
         .then(res => {
             if (res.isPlaying) {
