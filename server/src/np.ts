@@ -1,10 +1,14 @@
 import SpotifyWebApi from 'spotify-web-api-node';
-import chalk from 'chalk';
 import { Response } from 'express';
 import humanise from 'humanize-duration';
 import moment from 'moment';
+import Logger from './Logger';
 
-export default async (res: Response, spotify: SpotifyWebApi) => {
+export default async (
+    res: Response,
+    spotify: SpotifyWebApi,
+    logger: Logger,
+) => {
     // Find the newt's current/most recent track
     const currentTrack = await spotify.getMyCurrentPlayingTrack({
         market: 'GB',
@@ -24,12 +28,10 @@ export default async (res: Response, spotify: SpotifyWebApi) => {
         .join(', ')
         .replace(/, ((?:.(?!, ))+)$/, ' and $1');
 
-    console.log(
-        chalk.yellow(
-            `Currently listening/most recently listening to: ${chalk.bold(
-                `${artists[0].name} - ${name}`,
-            )}`,
-        ),
+    logger.info(
+        `Currently listening/most recently listening to: ${logger.bold(
+            `${artists[0].name} - ${name}`,
+        )}`,
     );
 
     // Send back the data

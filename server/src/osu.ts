@@ -1,14 +1,17 @@
 import { Request, Response } from 'express';
 import axios from 'axios';
 import humanise from 'humanize-duration';
+import Logger from './Logger';
 
-export default async (req: Request, res: Response) => {
+export default async (req: Request, res: Response, logger: Logger) => {
     const id = req.params.id ? req.params.id : process.env.OSUID ?? '16009610';
     const user = (
         await axios.get(
             `https://osu.ppy.sh/api/get_user?k=${process.env.OSU}&u=${id}&type=id`,
         )
     ).data[0];
+
+    logger.osu(`Looking up info for the osu! user with the ID ${id}`);
 
     res.send({
         username: user ? user.username : null,
