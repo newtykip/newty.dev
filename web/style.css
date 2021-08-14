@@ -200,6 +200,9 @@ main {
 	font-weight: 600;
 	line-height: 0.8;
 	text-decoration: none;
+	color: var(--c-primary);
+	text-decoration: none;
+	font-weight: var(--f-weight);
 }
 
 .visible {
