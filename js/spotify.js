@@ -3,37 +3,44 @@ const el = document.getElementById('song');
 
 // Update the song
 const updateSong = () => {
-    fetch(new URL('https://newtt.me/api/np'))
-        .then(res => res.json())
-        .then(res => {
-            if (res.isPlaying) {
-                // Update the content of the element
-	            const artist = res.artists[0].name.toLowerCase();
-	            const song = res.name.toLowerCase();
-                el.innerHTML = `listening to: <a href="${res.url}">${artist} - ${song}</a>`;
-                
-                // Ensure that the song is visible
-                if (!el.classList.contains('visible')) {
-                    el.classList.add('visible');
-                }
+	fetch(new URL('https://newtt.me/api/np'))
+		.then((res) => res.json())
+		.then((res) => {
+			console.log(res);
 
-                console.log(`Song updated! Currently listening to ${artist} - ${song}`);
-            } else {
-                // Ensure that the song is not visible
-                if (el.classList.contains('visible')) {
-                    el.classList.remove('visible');
-                }
+			if (!res.hasOwnProperty('message')) {
+				// Update the content of the element
+				const artist = res.artists[0].name.toLowerCase();
+				const song = res.name.toLowerCase();
+				el.innerHTML = `listening to: <a href="${res.url}">${artist} - ${song}</a>`;
 
-                console.log('Song updated! Currently listening to nothing!');
-            }
-        })
-        .catch(err => {
-            console.error('There was an issue fetching data about newt\'s current song. Sorry!', err);
-            // Ensure that the song is not visible
-            if (el.classList.contains('visible')) {
-                el.classList.remove('visible');
-            }
-        });
+				// Ensure that the song is visible
+				if (!el.classList.contains('visible')) {
+					el.classList.add('visible');
+				}
+
+				console.log(
+					`Song updated! Currently listening to ${artist} - ${song}`,
+				);
+			} else {
+				// Ensure that the song is not visible
+				if (el.classList.contains('visible')) {
+					el.classList.remove('visible');
+				}
+
+				console.log('Song updated! Currently listening to nothing!');
+			}
+		})
+		.catch((err) => {
+			console.error(
+				"There was an issue fetching data about newt's current song. Sorry!",
+				err,
+			);
+			// Ensure that the song is not visible
+			if (el.classList.contains('visible')) {
+				el.classList.remove('visible');
+			}
+		});
 };
 
 // Check for a new song every 5 seconds

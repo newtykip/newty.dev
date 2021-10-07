@@ -63,6 +63,7 @@ const getCurrentTrack = async () => {
             humanDuration: humanise(duration_ms),
             trackNumber,
             preview,
+            url: track.external_urls.spotify,
         };
     } else {
         return null;
