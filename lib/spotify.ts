@@ -3,9 +3,9 @@ import SpotifyWebApi from 'spotify-web-api-node';
 import { humanise } from './utils';
 
 const spotify = new SpotifyWebApi({
-    clientId: config.spotify.id,
-    clientSecret: config.spotify.secret,
-    refreshToken: config.spotify.refreshToken,
+    clientId: config.credentials.spotify.id,
+    clientSecret: config.credentials.spotify.secret,
+    refreshToken: config.credentials.spotify.refreshToken,
 });
 
 const refreshAccessToken = async () => {

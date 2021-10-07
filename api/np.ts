@@ -1,7 +1,7 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import { getCurrentTrack } from '../lib/spotifyClientApi';
+import { getCurrentTrack } from '../lib/spotify';
 
-module.exports = async (req: VercelRequest, res: VercelResponse) => {
+export default async (_req: VercelRequest, res: VercelResponse) => {
     const track = await getCurrentTrack();
 
     if (!track) {
