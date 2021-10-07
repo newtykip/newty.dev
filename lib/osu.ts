@@ -5,11 +5,14 @@ import { humanise } from './utils';
 
 const getUserAvatar = (id: string) => `${config.endpoints.osu.getAvatar}/${id}`;
 
-const getOsuUser = async (id: string = config.credentials.osu.newtId) => {
+const getOsuUser = async (
+    type: 'id' | 'username' = 'id',
+    q: string = config.credentials.osu.newtId,
+) => {
     const params = new URLSearchParams({
         k: config.credentials.osu.apiKey,
-        u: id,
-        type: 'id',
+        u: q,
+        type: type === 'username' ? 'string' : 'id',
     });
 
     const { data } = await axios.get(
