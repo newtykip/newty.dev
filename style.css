@@ -217,7 +217,15 @@ main {
 }
 
 .visible {
+    visibility: visible;
     opacity: 1 !important;
+    transition: opacity 1s linear;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0 !important;
+    transition: visibility 0s 1s, opacity 1s linear;
 }
 
 .type-primary {

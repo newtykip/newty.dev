@@ -26,15 +26,16 @@ const getCurrentTrack = async () => {
     await refreshAccessToken();
 
     // Get the current track
-    const track = (
+    const res = (
         await spotify.getMyCurrentPlayingTrack({
             market: 'GB',
         })
-    ).body.item as SpotifyApi.TrackObjectFull;
+    ).body;
+    const track = res.item as SpotifyApi.TrackObjectFull;
 
     // If newt is currently listening to something, return filtered information about the track
     // otherwise return null
-    if (track) {
+    if (track && res.is_playing) {
         const {
             name,
             album,
