@@ -6,8 +6,6 @@ const updateSong = () => {
 	fetch(new URL('https://newtt.me/api/np'))
 		.then((res) => res.json())
 		.then((res) => {
-			console.log(res);
-
 			if (!res.hasOwnProperty('message')) {
 				// Update the content of the element
 				const artist = res.artists[0].name.toLowerCase();
@@ -16,6 +14,7 @@ const updateSong = () => {
 
 				// Ensure that the song is visible
 				if (!el.classList.contains('visible')) {
+					el.classList.remove('hidden');
 					el.classList.add('visible');
 				}
 
@@ -26,6 +25,7 @@ const updateSong = () => {
 				// Ensure that the song is not visible
 				if (el.classList.contains('visible')) {
 					el.classList.remove('visible');
+					el.classList.add('hidden');
 				}
 
 				console.log('Song updated! Currently listening to nothing!');

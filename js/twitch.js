@@ -8,7 +8,9 @@ fetch(new URL('https://newtt.me/api/twitch'))
 	.then((res) => {
 		twitchUrl.href = `https://twitch.tv/${res.username}`;
 
-		if (res.stream === null) {
+		if (res.stream !== null) {
 			liveEl.innerText = " (I'm Live!)";
+			liveEl.classList.remove('hidden');
+			liveEl.classList.add('visible');
 		}
 	});
