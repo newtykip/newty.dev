@@ -1,0 +1,16 @@
+{
+  "name": "newtt.me",
+  "packageManager": "yarn@3.0.2",
+  "dependencies": {
+    "axios": "^0.22.0",
+    "humanize-duration": "^3.27.0",
+    "spotify-web-api-node": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/humanize-duration": "^3",
+    "@types/node": "^16.10.3",
+    "@types/spotify-web-api-node": "^5.0.3",
+    "@vercel/node": "^1.12.1",
+    "typescript": "^4.4.3"
+  }
+}

@@ -2,3 +2,11 @@ node_modules
 .env
 dist
 *-error*
+_server
+
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
+
+.vercel
