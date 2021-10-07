@@ -42,6 +42,7 @@ const getCurrentTrack = async () => {
             duration_ms,
             track_number: trackNumber,
             preview_url: preview,
+            id,
         } = track;
 
         const filteredAlbum = {
@@ -58,6 +59,7 @@ const getCurrentTrack = async () => {
 
         return {
             name,
+            id,
             album: filteredAlbum,
             artists,
             durationInMs: duration_ms,

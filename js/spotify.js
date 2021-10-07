@@ -1,5 +1,6 @@
 // Fetch the element
 const el = document.getElementById('song');
+var storedSong = null;
 
 // Update the song
 const updateSong = () => {
@@ -7,16 +8,34 @@ const updateSong = () => {
 		.then((res) => res.json())
 		.then((res) => {
 			if (!res.hasOwnProperty('message')) {
-				// Update the content of the element
-				const artist = res.artists[0].name.toLowerCase();
-				const song = res.name.toLowerCase();
-				el.innerHTML = `listening to: <a href="${res.url}">${artist} - ${song}</a>`;
-
 				// Ensure that the song is visible
 				if (!el.classList.contains('visible')) {
 					el.classList.remove('hidden');
 					el.classList.add('visible');
 				}
+
+				// If the song is different to the previous one, reanimate
+				if (res.id !== storedSong) {
+					// Go away!
+					el.classList.remove('visible');
+					el.classList.add('hidden');
+
+					// Come back!
+					window.setTimeout(() => {
+						el.classList.remove('hidden');
+						el.classList.add('visible');
+
+						el.innerHTML = `listening to: <a href="${res.url}">${artist} - ${song}</a>`;
+					}, 1000);
+				} else {
+					el.innerHTML = `listening to: <a href="${res.url}">${artist} - ${song}</a>`;
+				}
+
+				storedSong = res.id;
+
+				// Update the content of the element
+				const artist = res.artists[0].name.toLowerCase();
+				const song = res.name.toLowerCase();
 
 				console.log(
 					`Song updated! Currently listening to ${artist} - ${song}`,

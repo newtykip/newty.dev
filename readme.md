@@ -87,6 +87,7 @@ Fetches information about a Twitch streamer and - if they are streaming - their 
 ```json
 {
     "name": "Snowdin Town",
+    "id": "6VhLpbQlPWgU11As8woUIC",
     "album": {
         "name": "UNDERTALE Soundtrack",
         "url": "https://open.spotify.com/album/2M2Ae2SvZe3fmzUtlVOV5Z",
