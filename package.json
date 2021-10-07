@@ -5,6 +5,7 @@
     "axios": "^0.22.0",
     "humanize-duration": "^3.27.0",
     "i18n-iso-countries": "^6.8.0",
+    "iso-language-converter": "^1.1.0",
     "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
