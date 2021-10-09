@@ -14,6 +14,9 @@ const updateSong = () => {
 					el.classList.add('visible');
 				}
 
+				const artist = res.artists[0].name.toLowerCase();
+				const song = res.name.toLowerCase();
+
 				// If the song is different to the previous one, reanimate
 				if (res.id !== storedSong) {
 					// Go away!
@@ -32,10 +35,6 @@ const updateSong = () => {
 				}
 
 				storedSong = res.id;
-
-				// Update the content of the element
-				const artist = res.artists[0].name.toLowerCase();
-				const song = res.name.toLowerCase();
 
 				console.log(
 					`Song updated! Currently listening to ${artist} - ${song}`,
