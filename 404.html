@@ -2,7 +2,7 @@
 <html>
     <head>
         <!-- Primary Meta Tags -->
-        <title>newt!</title>
+        <title>404</title>
         <meta name="title" content="newt!" />
         <meta name="description" content="minor | programmer | streamer" />
         <meta
@@ -46,44 +46,17 @@
         <link rel="canonical" href="https://newtt.me/" />
         <link rel="icon" href="./img/meow.png" />
 
-        <link rel="stylesheet" href="./css/index.css" />
+        <link rel="stylesheet" href="./css/404.css" />
     </head>
 
     <body>
-        <main>
-            <h1 class="logo"><a href="/"></a></h1>
-            <p class="type-primary hidden" id="song"></p>
-            <p class="intro type-primary">
-                Student programmer providing simplistic solutions to modern
-                problems.
-            </p>
-            <footer>
-                <div class="footer-content">
-                    <p>
-                        Check out my
-                        <a href="https://github.com/newtykins">GitHub</a>.
-                        Follow me on
-                        <a id="twitchUrl" href="https://twitch.tv/newtykin"
-                            >Twitch</a
-                        ><span id="live" class="hidden"></span>. Here's my
-                        <a href="mailto:newtykins@outlook.com">Email</a>.
-                    </p>
-                </div>
-            </footer>
-        </main>
-
-        <script src="./js/three.min.js"></script>
-        <script src="./js/vanta.net.min.js"></script>
-        <script src="./js/typewriter.min.js"></script>
-        <script src="./js/spotify.js"></script>
-        <script src="./js/anim.js"></script>
-        <script src="./js/twitch.js"></script>
-        <script>
-            // Typewriter Animation
-            const logo = document.getElementsByClassName('logo')[0].children[0];
-            const typewriter = new Typewriter(logo);
-
-            typewriter.typeString('newtykins').start();
-        </script>
+        <div id="app">
+            <div id="wrapper">
+                <h1 class="glitch" data-text="404">404</h1>
+                <a href="./index.html"
+                    ><img src="./img/back.png" height="50"
+                /></a>
+            </div>
+        </div>
     </body>
 </html>
