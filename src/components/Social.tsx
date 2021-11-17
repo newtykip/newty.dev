@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faTwitch } from '@fortawesome/free-brands-svg-icons';
 import type { SizeProp } from '@fortawesome/fontawesome-svg-core';
+import axios from 'axios';
 
 interface SocialProps {
     iconSize: SizeProp;
 }
 
-// todo: make the twitch icon turn red when i am streaming
 function Social({ iconSize }: SocialProps) {
+    const [isLive, setIsLive] = useState(false);
+
+    useEffect(() => {
+        if (!isLive) {
+            checkIfLive();
+        }
+    }, []);
+
+    const checkIfLive = async () => {
+        const { data } = await axios.get('https://newtt.me/api/twitch');
+
+        setIsLive(data['stream'] ? true : false);
+    };
+
     return (
         <ul className="inline space-x-8">
             <a
@@ -17,7 +31,14 @@ function Social({ iconSize }: SocialProps) {
             >
                 <FontAwesomeIcon icon={faGithub} size={iconSize} />
             </a>
-            <a href="https://twitch.tv/newtykin" className="hover:text-silver">
+            <a
+                href="https://twitch.tv/newtykin"
+                className={
+                    isLive
+                        ? 'text-purple-500 hover:text-purple-400'
+                        : 'hover:text-silver'
+                }
+            >
                 <FontAwesomeIcon icon={faTwitch} size={iconSize} />
             </a>
         </ul>

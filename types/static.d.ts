@@ -3,6 +3,7 @@
 
 declare module 'vanta/dist/vanta.net.min.js';
 declare module 'humanize-duration';
+declare module 'iso-language-converter';
 
 /* CSS MODULES */
 declare module '*.module.css' {
