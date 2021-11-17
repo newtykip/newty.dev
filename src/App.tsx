@@ -27,7 +27,7 @@ function App({}: AppProps) {
                     backgroundColor: 0x0f0f10,
                     color: 0xffffff,
                     showDots: false,
-                    points: width >= 1920 ? 3 : Math.floor(width / 100),
+                    points: 3,
                     THREE,
                 }),
             );

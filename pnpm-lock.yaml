@@ -18,6 +18,7 @@ specifiers:
   axios: ^0.24.0
   humanize-duration: ^3.27.0
   i18n-iso-countries: ^7.0.0
+  iso-language-converter: ^1.1.0
   postcss: ^8.3.11
   prettier: ^2.2.1
   prop-types: ^15.7.2
@@ -39,6 +40,7 @@ dependencies:
   axios: 0.24.0
   humanize-duration: 3.27.0
   i18n-iso-countries: 7.0.0
+  iso-language-converter: 1.1.0
   prop-types: 15.7.2
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -2353,6 +2355,10 @@ packages:
   /isexe/2.0.0:
     resolution: {integrity: sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=}
     dev: true
+
+  /iso-language-converter/1.1.0:
+    resolution: {integrity: sha1-KVM7d0T2iU1HBumLzqBiGK2FgII=}
+    dev: false
 
   /isstream/0.1.2:
     resolution: {integrity: sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=}
