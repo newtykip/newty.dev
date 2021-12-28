@@ -6,3 +6,4 @@
 
 -   document api
 -   benchmark performance
+-   blog
