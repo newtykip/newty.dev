@@ -6,7 +6,6 @@ import Helmet from 'react-helmet';
 import Social from './components/Social';
 import Song from './components/Song';
 import Favicon from 'react-favicon';
-// import './App.css';
 
 interface AppProps {}
 
@@ -46,7 +45,10 @@ function App({}: AppProps) {
         typewriter.typeString('newtykins').start();
     };
 
-    const frames = Array.from(Array(9), (_, x) => `./favicon/${x}.png?v=2`);
+    const frames = Array.from(
+        Array(9),
+        (_, x) => `./favicon/${x}.png?v=${Math.floor(Math.random() * 100000)}`,
+    );
 
     return (
         <main>
