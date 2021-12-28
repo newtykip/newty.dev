@@ -24,7 +24,9 @@ function Social({ iconSize }: SocialProps) {
     }, []);
 
     const checkIfLive = async () => {
-        const { data } = await axios.get('https://newtt.me/api/twitch');
+        const { data } = await axios.get(
+            `${window.location.origin}/api/twitch`,
+        );
 
         setIsLive(data['stream'] ? true : false);
     };
