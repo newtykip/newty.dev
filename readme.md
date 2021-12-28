@@ -5,3 +5,4 @@
 ## todo
 
 -   document api
+-   benchmark performance
