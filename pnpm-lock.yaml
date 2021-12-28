@@ -27,6 +27,7 @@ specifiers:
   react: ^17.0.2
   react-dom: ^17.0.2
   react-favicon: ^0.0.25
+  react-ga: ^3.3.0
   react-helmet: ^6.1.0
   snowpack: ^3.3.7
   spotify-web-api-node: ^5.0.2
@@ -49,6 +50,7 @@ dependencies:
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-favicon: 0.0.25_react@17.0.2
+  react-ga: 3.3.0_prop-types@15.7.2+react@17.0.2
   react-helmet: 6.1.0_react@17.0.2
   spotify-web-api-node: 5.0.2
   three: 0.134.0
@@ -3465,6 +3467,16 @@ packages:
     peerDependencies:
       react: ^16.0.0 || ^17.0.0
     dependencies:
+      react: 17.0.2
+    dev: false
+
+  /react-ga/3.3.0_prop-types@15.7.2+react@17.0.2:
+    resolution: {integrity: sha512-o8RScHj6Lb8cwy3GMrVH6NJvL+y0zpJvKtc0+wmH7Bt23rszJmnqEQxRbyrqUzk9DTJIHoP42bfO5rswC9SWBQ==}
+    peerDependencies:
+      prop-types: ^15.6.0
+      react: ^15.6.2 || ^16.0 || ^17
+    dependencies:
+      prop-types: 15.7.2
       react: 17.0.2
     dev: false
 
