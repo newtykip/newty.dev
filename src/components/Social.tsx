@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faTwitch } from '@fortawesome/free-brands-svg-icons';
+import {
+    faDiscord,
+    faGithub,
+    faSpotify,
+    faSteam,
+    faTwitch,
+} from '@fortawesome/free-brands-svg-icons';
 import type { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import axios from 'axios';
 
@@ -40,6 +46,24 @@ function Social({ iconSize }: SocialProps) {
                 }
             >
                 <FontAwesomeIcon icon={faTwitch} size={iconSize} />
+            </a>
+            <a
+                href="https://discord.gg/brEhN5Y7YK"
+                className="hover:text-silver"
+            >
+                <FontAwesomeIcon icon={faDiscord} size={iconSize} />
+            </a>
+            <a
+                href="https://open.spotify.com/user/31f5j3pn6dafanybum4r4fwsppea?si=19b454be5af44ae2"
+                className="hover:text-silver"
+            >
+                <FontAwesomeIcon icon={faSpotify} size={iconSize} />
+            </a>
+            <a
+                href="https://steamcommunity.com/id/newtykins"
+                className="hover:text-silver"
+            >
+                <FontAwesomeIcon icon={faSteam} size={iconSize} />
             </a>
         </ul>
     );

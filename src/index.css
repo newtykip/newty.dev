@@ -6,3 +6,7 @@
 * {
     user-select: none;
 }
+
+body {
+    touch-action: none;
+}
