@@ -2,7 +2,6 @@
 /* Use this folder to also add/extend a package d.ts file, if needed. */
 
 declare module 'vanta/dist/vanta.net.min.js';
-declare module 'humanize-duration';
 declare module 'iso-language-converter';
 
 /* CSS MODULES */
