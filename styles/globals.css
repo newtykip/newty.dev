@@ -1,16 +1,30 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+:root {
+    --gradient: linear-gradient(90deg, #11998e 0%, #38ef7d);
+    --color-muted: #4a5568;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.heading {
+    line-height: 1.25;
 }
 
-* {
-  box-sizing: border-box;
+.subheading {
+    color: var(--color-muted);
+}
+
+.rainbow {
+    background: var(--gradient);
+    -webkit-animation: rainbow 5s ease infinite;
+    animation: rainbow 5s ease infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes rainbow {
+    from {
+        filter: hue-rotate(0deg);
+    }
+    to {
+        filter: hue-rotate(-360deg);
+    }
 }
