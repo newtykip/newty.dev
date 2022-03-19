@@ -22,43 +22,59 @@ const Navbar: NextPage = () => {
         theme: { screens }
     } = resolveConfig(tailwindConfig);
 
+    const closeMenu = () => {
+        navLinks.current.classList.add('hidden');
+        menuButton.current.classList.remove('hidden');
+        navLinks.current.classList.remove('navbarSlide');
+    };
+
     const toggleMobileNavbar = (e: MouseEvent) => {
         if (navLinks.current.classList.contains('hidden')) {
             navLinks.current.classList.remove('hidden');
             navLinks.current.classList.add('navbarSlide');
         } else {
-            navLinks.current.classList.add('hidden');
-            navLinks.current.classList.remove('navbarSlide');
+            closeMenu();
         }
+    };
+
+    const getBreakpoint = () => {
+        let breakpoint: string;
+
+        Object.keys(screens).forEach(key => {
+            if (window.innerWidth > parseInt(screens[key].split('px')[0])) {
+                breakpoint = key;
+            }
+        });
+
+        breakpoint ??= 'sm';
+
+        return breakpoint;
     };
 
     useEffect(() => {
         const handleResize = () => {
-            let breakpoint: string;
+            const breakpoint = getBreakpoint();
 
-            Object.keys(screens).forEach(key => {
-                if (window.innerWidth > parseInt(screens[key].split('px')[0])) {
-                    breakpoint = key;
-                }
-            });
-
-            breakpoint ??= 'sm';
-
-            console.log(breakpoint);
-
-            if (breakpoint === 'sm') {
-                navLinks.current.classList.add('hidden');
-                socialIcons.current.classList.add('hidden');
-                menuButton.current.classList.remove('hidden');
-            } else {
+            if (breakpoint !== 'sm') {
                 navLinks.current.classList.remove('hidden');
                 socialIcons.current.classList.remove('hidden');
                 menuButton.current.classList.add('hidden');
+            } else {
+                closeMenu();
+                socialIcons.current.classList.add('hidden');
             }
         };
 
         window.addEventListener('resize', handleResize);
         handleResize();
+
+        router.events.on('routeChangeStart', () => {
+            const breakpoint = getBreakpoint();
+
+            if (breakpoint === 'sm') {
+                closeMenu();
+            }
+        });
     }, []);
 
     return (
@@ -71,7 +87,7 @@ const Navbar: NextPage = () => {
             </button>
 
             <ul
-                className="align-baseline sm:block flex-wrap md:flex md:items-center flex-grow p-0 md:bg-transparent"
+                className="align-baseline sm:block flex-wrap md:flex md:items-center flex-grow p-0 md:bg-transparent hidden"
                 ref={navLinks}
             >
                 <NavbarLink path="/" content="Home" />
@@ -79,7 +95,7 @@ const Navbar: NextPage = () => {
                 <NavbarLink path="/social" content="Social" />
             </ul>
 
-            <div className="md:text-right hidden" ref={menuButton}>
+            <div className="md:text-right" ref={menuButton}>
                 <button
                     onClick={e => toggleMobileNavbar(e as unknown as MouseEvent)}
                     className="flex items-center px-3 py-3 text-gray-700 hover:text-gray-900"
@@ -89,7 +105,7 @@ const Navbar: NextPage = () => {
             </div>
 
             <div
-                className="md:w-5/12 md:text-right flex items-center md:justify-end"
+                className="md:w-5/12 md:text-right flex items-center md:justify-end hidden"
                 ref={socialIcons}
             >
                 <SocialIcon icon={faGithub} url="https://twitch.tv/newtykins" />

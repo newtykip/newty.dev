@@ -16,6 +16,7 @@ import Steam, { Game } from '@contexts/Steam';
 import Repo from '@contexts/Repo';
 import Osu from '@contexts/Osu';
 import Favicon from 'react-favicon';
+import Head from 'next/head';
 
 const App: NextPage<AppProps> = ({ Component, pageProps }) => {
     const [currentSong, setCurrentSong] = useState<Song>(null);
@@ -85,6 +86,10 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
 
     return (
         <React.Fragment>
+            <Head>
+                <title>newt!!</title>
+            </Head>
+
             <Favicon url={frames} animated={true} animationDelay={60} />
 
             <SongContext.Provider value={currentSong}>

@@ -19,7 +19,9 @@ const NavbarLink: NextPage<Props> = ({ path, content }) => {
         >
             <button
                 onClick={() => router.push(path)}
-                className={`font-bold ${!isActive ? 'hover:underline' : 'md:hover:underline'}`}
+                className={`font-bold ${
+                    !isActive ? 'hover:underline' : 'hover:underline sm:hover:no-underline'
+                }`}
             >
                 {content}
             </button>

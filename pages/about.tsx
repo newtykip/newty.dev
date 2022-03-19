@@ -47,12 +47,16 @@ const About: NextPage = () => {
 
                 <Card header="Listening to">
                     <span className="font-bold text-xl">
-                        {currentSong?.title ? (
-                            <a href={currentSong?.url} className="hover:underline">
-                                {currentSong?.artist} - {currentSong?.title}
-                            </a>
+                        {currentSong ? (
+                            currentSong?.title ? (
+                                <a href={currentSong?.url} className="hover:underline">
+                                    {currentSong?.artist} - {currentSong?.title}
+                                </a>
+                            ) : (
+                                'nothing (:'
+                            )
                         ) : (
-                            'nothing (:'
+                            '...'
                         )}
                     </span>
                 </Card>

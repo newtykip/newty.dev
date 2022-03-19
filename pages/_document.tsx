@@ -5,8 +5,6 @@ const Document: NextPage = () => {
     return (
         <Html>
             <Head>
-                <title>newt!!</title>
-
                 <meta property="og:title" content="newt!!" />
                 <meta
                     property="og:description"
