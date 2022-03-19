@@ -1,29 +1,13 @@
 import type { NextPage } from 'next';
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
-
-interface Song {
-    artist: string;
-    title: string;
-    url: string;
-}
+import Link from 'next/link';
+import { Song, SongContext } from './_app';
 
 const Home: NextPage = () => {
-    const [currentSong, setCurrentSong] = useState<Song>(null);
-
-    useEffect(() => {
-        fetch(`${window.location.origin}/api/spotify`)
-            .then(res => res.json())
-            .then(data =>
-                setCurrentSong({
-                    artist: data.artists?.map(artist => artist.name).join(', '),
-                    title: data.name,
-                    url: data.url
-                })
-            );
-    }, []);
+    const currentSong = useContext<Song>(SongContext);
 
     return (
         <React.Fragment>
@@ -33,7 +17,7 @@ const Home: NextPage = () => {
             </div>
 
             <div className="mb-24 items-center justify-between">
-                <h1 className="text-3xl font-bold heading mb-2">
+                <h1 className="text-3xl heading">
                     Hi, I'm <span className="rainbow">newt!</span>
                 </h1>
                 <h2 className="text-xl mb-0 subheading leading-relaxed">
@@ -49,7 +33,11 @@ const Home: NextPage = () => {
                     <br />
                     <br />
                     If you are new around here
-                    <br /> try the about page (:
+                    <br /> try the{' '}
+                    <span className="underline">
+                        <Link href="/about">about page</Link>
+                    </span>{' '}
+                    (:
                 </h2>
             </div>
         </React.Fragment>
