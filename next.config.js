@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: false,
-    ignoreDuringBuilds: true,
+    eslint: {
+        ignoreDuringBuilds: true
+    },
     images: {
         domains: ['github.com']
     }
