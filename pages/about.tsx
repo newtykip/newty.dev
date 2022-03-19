@@ -41,16 +41,16 @@ const About: NextPage = () => {
                         href={`https://osu.ppy.sh/u/${config.credentials.osu.userId}`}
                         className="heading text-2xl hover:underline"
                     >
-                        {`#${osuRank?.toLocaleString()}` ?? '...'}
+                        {osuRank ? `#${osuRank?.toLocaleString()}` : '...'}
                     </a>
                 </Card>
 
                 <Card header="Listening to">
                     <span className="font-bold text-xl">
                         {currentSong ? (
-                            currentSong?.title ? (
+                            currentSong?.name ? (
                                 <a href={currentSong?.url} className="hover:underline">
-                                    {currentSong?.artist} - {currentSong?.title}
+                                    {currentSong?.artist} - {currentSong?.name}
                                 </a>
                             ) : (
                                 'nothing (:'

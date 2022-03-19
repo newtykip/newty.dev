@@ -3,8 +3,15 @@ import { Html, Head, Main, NextScript } from 'next/document';
 
 const Document: NextPage = () => {
     return (
-        <Html>
+        <Html lang="en">
             <Head>
+                <meta name="robots" content="all" />
+                <meta
+                    property="description"
+                    content="Student programmer providing simplistic solutions to modern
+        problems"
+                />
+
                 <meta property="og:title" content="newt!!" />
                 <meta
                     property="og:description"
@@ -32,6 +39,9 @@ const Document: NextPage = () => {
                     href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap"
                     rel="stylesheet"
                 />
+
+                <link rel="manifest" href="/manifest.json" />
+                <meta name="theme-color" content="#AAF0D1" />
             </Head>
             <body>
                 <Main />

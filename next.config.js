@@ -1,3 +1,9 @@
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: process.env.ANALYSE === 'true'
+});
+
+const withPWA = require('next-pwa');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: false,
@@ -6,7 +12,13 @@ const nextConfig = {
     },
     images: {
         domains: ['github.com']
+    },
+    pwa: {
+        dest: 'public',
+        register: true,
+        skipWaiting: true,
+        disable: process.env.NODE_ENV === 'development'
     }
 };
 
-module.exports = nextConfig;
+module.exports = withPWA(withBundleAnalyzer(nextConfig));

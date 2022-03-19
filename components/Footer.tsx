@@ -15,7 +15,11 @@ const Footer: NextPage = () => {
                 <Link href="https://github.com/newtykins">newtykins</Link>
             </span>
             <div className="mt-2">
-                <button className="mr-6 hover:text-red-600" onClick={() => router.push('/shhh')}>
+                <button
+                    className="mr-6 hover:text-red-600"
+                    onClick={() => router.push('/shhh')}
+                    aria-label="Heart"
+                >
                     <FontAwesomeIcon icon={faHeart} />
                 </button>
 

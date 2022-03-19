@@ -2,7 +2,7 @@ import { createContext } from 'react';
 
 interface Song {
     artist: string;
-    title: string;
+    name: string;
     url: string;
 }
 

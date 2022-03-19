@@ -87,7 +87,7 @@ const Navbar: NextPage = () => {
             </button>
 
             <ul
-                className="align-baseline sm:block flex-wrap md:flex md:items-center flex-grow p-0 md:bg-transparent hidden"
+                className="align-baseline flex-wrap md:flex md:items-center flex-grow p-0 md:bg-transparent hidden"
                 ref={navLinks}
             >
                 <NavbarLink path="/" content="Home" />
@@ -99,13 +99,14 @@ const Navbar: NextPage = () => {
                 <button
                     onClick={e => toggleMobileNavbar(e as unknown as MouseEvent)}
                     className="flex items-center px-3 py-3 text-gray-700 hover:text-gray-900"
+                    aria-label="Menu"
                 >
                     <FontAwesomeIcon icon={faBars} />
                 </button>
             </div>
 
             <div
-                className="md:w-5/12 md:text-right flex items-center md:justify-end hidden"
+                className="md:w-5/12 md:text-right items-center md:justify-end hidden"
                 ref={socialIcons}
             >
                 <SocialIcon icon={faGithub} url="https://github.com/newtykins" />

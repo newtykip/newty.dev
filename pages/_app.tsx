@@ -17,6 +17,7 @@ import Repo from '@contexts/Repo';
 import Osu from '@contexts/Osu';
 import Favicon from 'react-favicon';
 import Head from 'next/head';
+import pc from 'picocolors';
 
 const App: NextPage<AppProps> = ({ Component, pageProps }) => {
     const [currentSong, setCurrentSong] = useState<Song>(null);
@@ -26,12 +27,16 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
     const [recentGame, setRecentGame] = useState<Game>();
 
     const updateSong = async () => {
-        const data = await fetch(`${window.location.origin}/api/spotify`).then(res => res.json());
+        const { artists, name, url } = await fetch(`${window.location.origin}/api/spotify`).then(
+            res => res.json()
+        );
+
+        const artist = artists?.[0]?.name;
 
         setCurrentSong({
-            artist: data.artists?.[0]?.name,
-            title: data.name,
-            url: data.url
+            artist,
+            name,
+            url
         });
     };
 

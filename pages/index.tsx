@@ -13,10 +13,11 @@ const Home: NextPage = () => {
         <React.Fragment>
             <div className="items-center justify-between mb-8">
                 <Image
-                    src="https://github.com/newtykins.png"
-                    width={200}
-                    height={200}
+                    src="https://github.com/newtykins.png?size=500"
+                    width={225}
+                    height={225}
                     className="rounded-full"
+                    alt="Profile Picture"
                 />
             </div>
 
@@ -28,9 +29,9 @@ const Home: NextPage = () => {
                     Welcome to my home on the internet. <br />
                     <FontAwesomeIcon icon={faMusic} />{' '}
                     {currentSong ? (
-                        currentSong.title ? (
+                        currentSong.name ? (
                             <a href={currentSong?.url} className="hover:underline">
-                                {currentSong?.artist} - {currentSong?.title}
+                                {currentSong?.artist} - {currentSong?.name}
                             </a>
                         ) : (
                             'I am not currenty listening to anything!'
