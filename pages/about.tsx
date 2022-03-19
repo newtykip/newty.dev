@@ -6,6 +6,7 @@ import Song from '@contexts/Song';
 import Repo from '@contexts/Repo';
 import Osu from '@contexts/Osu';
 import Steam from '@contexts/Steam';
+import Image from 'next/image';
 
 const About: NextPage = () => {
     const currentSong = useContext(Song);
@@ -25,7 +26,7 @@ const About: NextPage = () => {
                 Sometimes that stuff is pretty <span className="rainbow">cool</span>
             </h2>
 
-            <div className="grid grid-flow-row justify-center items-center md:grid-flow-col gap-2">
+            <div className="grid grid-flow-row justify-center items-center md:grid-flow-col gap-2 mb-8">
                 <Card header="GitHub Repos">
                     <a
                         href={`https://github.com/${config.credentials.github.username}`}
@@ -68,6 +69,8 @@ const About: NextPage = () => {
                     </span>
                 </Card>
             </div>
+
+            <Image src="/jinx.webp" width={250} height={250} className="rounded-3xl" />
         </React.Fragment>
     );
 };
