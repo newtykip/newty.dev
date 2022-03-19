@@ -108,7 +108,7 @@ const Navbar: NextPage = () => {
                 className="md:w-5/12 md:text-right flex items-center md:justify-end hidden"
                 ref={socialIcons}
             >
-                <SocialIcon icon={faGithub} url="https://twitch.tv/newtykins" />
+                <SocialIcon icon={faGithub} url="https://github.com/newtykins" />
                 <SocialIcon
                     icon={faTwitch}
                     url={`https://twitch.tv/${liveStatus?.username}`}
