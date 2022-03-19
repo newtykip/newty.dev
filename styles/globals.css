@@ -20,6 +20,12 @@
     -webkit-text-fill-color: transparent;
 }
 
+.twitchAnim {
+    animation: tada;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
 @keyframes rainbow {
     from {
         filter: hue-rotate(0deg);

@@ -1,15 +1,29 @@
 import '@styles/globals.css';
 import '@styles/tailwind.css';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import 'animate.css';
+
 import type { AppProps } from 'next/app';
 import type { NextPage } from 'next';
 import Navbar from '@components/Navbar';
 import Footer from '@components/Footer';
 import { createContext, useEffect, useState } from 'react';
+import { config as faConfig } from '@fortawesome/fontawesome-svg-core';
+import config from '@utils/config';
+faConfig.autoAddCss = false;
 
 // todo: refactor song
-export const SongContext = createContext(null);
+export const SongContext = createContext<Song>(null);
+export const LiveContext = createContext<LiveStatus>(null);
+export const RankContext = createContext<number>(null);
+export const RepoContext = createContext<number>(null);
 
-export interface Song {
+interface LiveStatus {
+    live: boolean;
+    username: string;
+}
+
+interface Song {
     artist: string;
     title: string;
     url: string;
@@ -17,6 +31,9 @@ export interface Song {
 
 const App: NextPage<AppProps> = ({ Component, pageProps }) => {
     const [currentSong, setCurrentSong] = useState<Song>(null);
+    const [liveStatus, setLiveStatus] = useState<LiveStatus>(null);
+    const [repoCount, setRepoCount] = useState<number>(null);
+    const [osuRank, setOsuRank] = useState<number>(null);
 
     const updateSong = async () => {
         const data = await fetch(`${window.location.origin}/api/spotify`).then(res => res.json());
@@ -29,17 +46,47 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
     };
 
     useEffect(() => {
+        // Check if newt is live on Twitch
+        fetch(`${window.location.origin}/api/twitch`)
+            .then(res => res.json())
+            .then(data => {
+                let live = true; // todo: make this false
+                if (data.stream) live = true;
+
+                setLiveStatus({
+                    live,
+                    username: data.username
+                });
+            });
+
+        // Fetch GitHub repo count
+        fetch(`https://api.github.com/users/${config.credentials.github.username}/repos`)
+            .then(res => res.json())
+            .then(data => setRepoCount(data.length));
+
+        // Fetch osu! rank
+        fetch(`${window.location.origin}/api/osu`)
+            .then(res => res.json())
+            .then(data => setOsuRank(data.globalRank));
+
+        // Keep track of the current song
         updateSong();
         setInterval(updateSong, 10000);
     }, []);
 
     return (
         <SongContext.Provider value={currentSong}>
-            <div className="max-w-screen-lg mx-auto px-6 py-4 md:px-4 md:py-10 text-center">
-                <Navbar />
-                <Component {...pageProps} />
-                <Footer />
-            </div>
+            <LiveContext.Provider value={liveStatus}>
+                <RepoContext.Provider value={repoCount}>
+                    <RankContext.Provider value={osuRank}>
+                        <div className="max-w-screen-lg mx-auto px-6 py-4 md:px-4 md:py-10 text-center">
+                            <Navbar />
+                            <Component {...pageProps} />
+                            <Footer />
+                        </div>
+                    </RankContext.Provider>
+                </RepoContext.Provider>
+            </LiveContext.Provider>
         </SongContext.Provider>
     );
 };

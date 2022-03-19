@@ -1,25 +1,13 @@
 import type { NextPage } from 'next';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import Card from '@components/Card';
-import { Song, SongContext } from './_app';
+import { RankContext, RepoContext, SongContext } from './_app';
 import config from '@utils/config';
 
 const About: NextPage = () => {
-    const [repoCount, setRepoCount] = useState<number>(null);
-    const [osuRank, setOsuRank] = useState<number>(null);
-    const currentSong = useContext<Song>(SongContext);
-
-    useEffect(() => {
-        // Fetch the repo count
-        fetch(`https://api.github.com/users/${config.credentials.github.username}/repos`)
-            .then(res => res.json())
-            .then(data => setRepoCount(data.length));
-
-        // Fetch the osu! rank
-        fetch(`${window.location.origin}/api/osu`)
-            .then(res => res.json())
-            .then(data => setOsuRank(data.globalRank));
-    }, []);
+    const currentSong = useContext(SongContext);
+    const repoCount = useContext(RepoContext);
+    const osuRank = useContext(RankContext);
 
     return (
         <React.Fragment>
@@ -48,7 +36,7 @@ const About: NextPage = () => {
                         href={`https://osu.ppy.sh/u/${config.credentials.osu.userId}`}
                         className="heading text-2xl hover:underline"
                     >
-                        {`#${osuRank}` ?? '...'}
+                        {`#${osuRank?.toLocaleString()}` ?? '...'}
                     </a>
                 </Card>
 

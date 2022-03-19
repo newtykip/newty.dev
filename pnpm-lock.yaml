@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@fortawesome/fontawesome-svg-core': ^6.1.0
+  '@fortawesome/free-brands-svg-icons': ^6.1.0
   '@fortawesome/free-solid-svg-icons': ^6.1.0
   '@fortawesome/react-fontawesome': ^0.1.18
   '@types/node': 17.0.21
@@ -9,11 +10,13 @@ specifiers:
   '@types/spotify-web-api-node': ^5.0.7
   '@types/three': ^0.138.0
   '@vercel/node': ^1.13.0
+  animate.css: ^4.1.1
   autoprefixer: ^10.4.4
   eslint: 8.11.0
   eslint-config-next: 12.1.0
   humanize-duration: ^3.27.1
   i18n-iso-countries: ^7.3.0
+  iso-language-converter: ^1.1.0
   next: 12.1.0
   postcss: ^8.4.12
   react: 17.0.2
@@ -24,10 +27,13 @@ specifiers:
 
 dependencies:
   '@fortawesome/fontawesome-svg-core': 6.1.0
+  '@fortawesome/free-brands-svg-icons': 6.1.0
   '@fortawesome/free-solid-svg-icons': 6.1.0
   '@fortawesome/react-fontawesome': 0.1.18_d2d03af444233300c17090fb2cc105c2
+  animate.css: 4.1.1
   humanize-duration: 3.27.1
   i18n-iso-countries: 7.3.0
+  iso-language-converter: 1.1.0
   next: 12.1.0_react-dom@17.0.2+react@17.0.2
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -109,6 +115,14 @@ packages:
 
   /@fortawesome/fontawesome-svg-core/6.1.0:
     resolution: {integrity: sha512-racj+/EDnMZN0jcuHePOa+9kdHHOCpCAbBvVRnEi4G4DA5SWQiT/uXJ8WcfVEbLN51vPJjhukP4o+zH0cfYplg==}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 6.1.0
+    dev: false
+
+  /@fortawesome/free-brands-svg-icons/6.1.0:
+    resolution: {integrity: sha512-9utHuoCL12LCpZqTphg+tPLZeK+qcOX6tjky1DWtRXFmRgm67BA692STRJ2CXGlDkXSqfRGId8WkvsKqFAgmAQ==}
     engines: {node: '>=6'}
     requiresBuild: true
     dependencies:
@@ -436,6 +450,10 @@ packages:
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
     dev: true
+
+  /animate.css/4.1.1:
+    resolution: {integrity: sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==}
+    dev: false
 
   /ansi-regex/5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -1473,6 +1491,10 @@ packages:
   /isexe/2.0.0:
     resolution: {integrity: sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=}
     dev: true
+
+  /iso-language-converter/1.1.0:
+    resolution: {integrity: sha1-KVM7d0T2iU1HBumLzqBiGK2FgII=}
+    dev: false
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
