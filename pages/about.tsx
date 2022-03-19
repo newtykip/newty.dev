@@ -1,14 +1,17 @@
 import type { NextPage } from 'next';
 import React, { useContext } from 'react';
 import Card from '@components/Card';
-import { GameContext, RankContext, RepoContext, SongContext } from './_app';
 import config from '@utils/config';
+import Song from '@contexts/Song';
+import Repo from '@contexts/Repo';
+import Osu from '@contexts/Osu';
+import Steam from '@contexts/Steam';
 
 const About: NextPage = () => {
-    const currentSong = useContext(SongContext);
-    const repoCount = useContext(RepoContext);
-    const osuRank = useContext(RankContext);
-    const lastPlayedGame = useContext(GameContext);
+    const currentSong = useContext(Song);
+    const repoCount = useContext(Repo);
+    const osuRank = useContext(Osu);
+    const lastPlayedGame = useContext(Steam);
 
     return (
         <React.Fragment>

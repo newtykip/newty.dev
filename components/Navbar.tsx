@@ -5,11 +5,11 @@ import { useRouter } from 'next/router';
 import { faGithub, faTwitch } from '@fortawesome/free-brands-svg-icons';
 import NavbarIcon from './NavbarIcon';
 import { useContext } from 'react';
-import { LiveContext } from 'pages/_app';
+import Twitch from '@contexts/Twitch';
 
 const Navbar: NextPage = () => {
     const router = useRouter();
-    const liveStatus = useContext(LiveContext);
+    const liveStatus = useContext(Twitch);
 
     return (
         <header className="flex items-center flex-wrap justify-between relative mb-20" id="nav">

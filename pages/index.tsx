@@ -4,10 +4,10 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
-import { SongContext } from './_app';
+import Song from '@contexts/Song';
 
 const Home: NextPage = () => {
-    const currentSong = useContext(SongContext);
+    const currentSong = useContext(Song);
 
     return (
         <React.Fragment>

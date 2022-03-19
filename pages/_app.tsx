@@ -7,34 +7,15 @@ import type { AppProps } from 'next/app';
 import type { NextPage } from 'next';
 import Navbar from '@components/Navbar';
 import Footer from '@components/Footer';
-import { createContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { config as faConfig } from '@fortawesome/fontawesome-svg-core';
 import config from '@utils/config';
+import SongContext, { Song } from '@contexts/Song';
+import Twitch, { LiveStatus } from '@contexts/Twitch';
+import Steam, { Game } from '@contexts/Steam';
+import Repo from '@contexts/Repo';
+import Osu from '@contexts/Osu';
 faConfig.autoAddCss = false;
-
-// todo: refactor song
-export const SongContext = createContext<Song>(null);
-export const LiveContext = createContext<LiveStatus>(null);
-export const RankContext = createContext<number>(null);
-export const RepoContext = createContext<number>(null);
-export const GameContext = createContext<Game>(null);
-
-interface LiveStatus {
-    live: boolean;
-    username: string;
-}
-
-interface Song {
-    artist: string;
-    title: string;
-    url: string;
-}
-
-interface Game {
-    name: string;
-    playTime: number;
-    url: string;
-}
 
 const App: NextPage<AppProps> = ({ Component, pageProps }) => {
     const [currentSong, setCurrentSong] = useState<Song>(null);
@@ -99,19 +80,19 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
 
     return (
         <SongContext.Provider value={currentSong}>
-            <LiveContext.Provider value={liveStatus}>
-                <RepoContext.Provider value={repoCount}>
-                    <RankContext.Provider value={osuRank}>
-                        <GameContext.Provider value={recentGame}>
+            <Twitch.Provider value={liveStatus}>
+                <Repo.Provider value={repoCount}>
+                    <Osu.Provider value={osuRank}>
+                        <Steam.Provider value={recentGame}>
                             <div className="max-w-screen-lg mx-auto px-6 py-4 md:px-4 md:py-10 text-center">
                                 <Navbar />
                                 <Component {...pageProps} />
                                 <Footer />
                             </div>
-                        </GameContext.Provider>
-                    </RankContext.Provider>
-                </RepoContext.Provider>
-            </LiveContext.Provider>
+                        </Steam.Provider>
+                    </Osu.Provider>
+                </Repo.Provider>
+            </Twitch.Provider>
         </SongContext.Provider>
     );
 };
