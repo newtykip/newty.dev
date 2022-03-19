@@ -13,6 +13,7 @@ specifiers:
   eslint: 8.11.0
   eslint-config-next: 12.1.0
   humanize-duration: ^3.27.1
+  i18n-iso-countries: ^7.3.0
   next: 12.1.0
   postcss: ^8.4.12
   react: 17.0.2
@@ -26,6 +27,7 @@ dependencies:
   '@fortawesome/free-solid-svg-icons': 6.1.0
   '@fortawesome/react-fontawesome': 0.1.18_d2d03af444233300c17090fb2cc105c2
   humanize-duration: 3.27.1
+  i18n-iso-countries: 7.3.0
   next: 12.1.0_react-dom@17.0.2+react@17.0.2
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -771,6 +773,10 @@ packages:
       minimist: 1.2.5
     dev: true
 
+  /diacritics/1.3.0:
+    resolution: {integrity: sha1-PvqHMj67hj5mls67AILUj/PW96E=}
+    dev: false
+
   /didyoumean/1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
     dev: true
@@ -1314,6 +1320,13 @@ packages:
 
   /humanize-duration/3.27.1:
     resolution: {integrity: sha512-jCVkMl+EaM80rrMrAPl96SGG4NRac53UyI1o/yAzebDntEY6K6/Fj2HOjdPg8omTqIe5Y0wPBai2q5xXrIbarA==}
+    dev: false
+
+  /i18n-iso-countries/7.3.0:
+    resolution: {integrity: sha512-z7vFa/wSDx3lpxQZNr/+ZioUQNTYqk1NZoP6vxjukr554r/QxpSRkYFfE3ovKKW82GpyAw4/c6Zi+2Ebr4T0fA==}
+    engines: {node: '>= 12'}
+    dependencies:
+      diacritics: 1.3.0
     dev: false
 
   /ignore/5.2.0:

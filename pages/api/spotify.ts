@@ -4,8 +4,8 @@ import config from '@utils/config';
 import humanise from '@utils/humanise';
 
 const spotify = new SpotifyWebApi({
-    clientId: config.credentials.spotify.id,
-    clientSecret: config.credentials.spotify.secret,
+    clientId: config.credentials.spotify.clientId,
+    clientSecret: config.credentials.spotify.clientSecret,
     refreshToken: config.credentials.spotify.refreshToken
 });
 
