@@ -70,6 +70,8 @@ const About: NextPage = () => {
                 </Card>
             </div>
 
+            {/* todo: add more content */}
+
             <Image src="/jinx.webp" width={250} height={250} className="rounded-3xl" />
         </React.Fragment>
     );

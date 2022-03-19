@@ -12,10 +12,14 @@ const NavbarLink: NextPage<Props> = ({ path, content }) => {
     const isActive = router.pathname === path;
 
     return (
-        <li className={`mr-4 ${isActive ? 'box-border border-slate-500 p-2 border-2' : ''}`}>
+        <li
+            className={`mr-4 ${
+                isActive ? 'sm:box-border border-slate-500 sm:p-2 sm:border-2' : ''
+            }`}
+        >
             <button
                 onClick={() => router.push(path)}
-                className={`font-bold ${!isActive ? 'hover:underline' : ''}`}
+                className={`font-bold ${!isActive ? 'hover:underline' : 'md:hover:underline'}`}
             >
                 {content}
             </button>

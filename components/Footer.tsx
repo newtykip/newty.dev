@@ -5,7 +5,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const Footer: NextPage = () => {
     return (
-        <footer className="text-sm mt-20">
+        <footer className="text-sm mt-20 select-none">
             made by{' '}
             <span className="hover:underline">
                 <Link href="https://github.com/newtykins">newtykins</Link>

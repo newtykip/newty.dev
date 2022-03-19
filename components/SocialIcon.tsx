@@ -1,10 +1,10 @@
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { NextPage } from 'next';
 
 interface Props {
     className?: string;
-    icon: IconDefinition;
+    icon: IconProp;
     url: string;
     tooltip?: string;
     iconClass?: string;

@@ -39,7 +39,7 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
         fetch(`${window.location.origin}/api/twitch`)
             .then(res => res.json())
             .then(data => {
-                let live = true; // todo: make this false
+                let live = false;
                 if (data.stream) live = true;
 
                 setLiveStatus({

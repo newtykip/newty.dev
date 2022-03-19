@@ -26,6 +26,11 @@
     animation-iteration-count: infinite;
 }
 
+.navbarSlide {
+    animation: slideInUp;
+    animation-duration: 1s;
+}
+
 *::-webkit-scrollbar {
     width: 16px;
 }
@@ -44,6 +49,20 @@
 
 *::-webkit-scrollbar-thumb:hover {
     background-color: #555;
+}
+
+::selection {
+    background: #555;
+    -webkit-text-fill-color: white;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+img {
+    user-select: none;
 }
 
 @keyframes rainbow {
