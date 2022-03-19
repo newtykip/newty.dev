@@ -16,6 +16,10 @@ export default {
         },
         github: {
             username: 'newtykins'
+        },
+        steam: {
+            apiKey: process.env.STEAM_API_KEY,
+            userId: '76561198163553688'
         }
     },
     endpoints: {
@@ -28,6 +32,9 @@ export default {
             getStream: 'https://api.twitch.tv/helix/streams',
             getUser: 'https://api.twitch.tv/helix/users',
             getTags: 'https://api.twitch.tv/helix/tags/streams'
+        },
+        steam: {
+            getId: 'https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1'
         }
     }
 };

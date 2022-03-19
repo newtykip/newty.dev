@@ -17,6 +17,7 @@ export const SongContext = createContext<Song>(null);
 export const LiveContext = createContext<LiveStatus>(null);
 export const RankContext = createContext<number>(null);
 export const RepoContext = createContext<number>(null);
+export const GameContext = createContext<Game>(null);
 
 interface LiveStatus {
     live: boolean;
@@ -29,11 +30,18 @@ interface Song {
     url: string;
 }
 
+interface Game {
+    name: string;
+    playTime: number;
+    url: string;
+}
+
 const App: NextPage<AppProps> = ({ Component, pageProps }) => {
     const [currentSong, setCurrentSong] = useState<Song>(null);
     const [liveStatus, setLiveStatus] = useState<LiveStatus>(null);
     const [repoCount, setRepoCount] = useState<number>(null);
     const [osuRank, setOsuRank] = useState<number>(null);
+    const [recentGame, setRecentGame] = useState<Game>();
 
     const updateSong = async () => {
         const data = await fetch(`${window.location.origin}/api/spotify`).then(res => res.json());
@@ -69,6 +77,21 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
             .then(res => res.json())
             .then(data => setOsuRank(data.globalRank));
 
+        // Fetch last played game
+        fetch(`${window.location.origin}/api/steam`)
+            .then(res => res.json())
+            .then(({ mostPlayedRecently }) => {
+                if (mostPlayedRecently) {
+                    const { name, appID, humanTimePlayed } = mostPlayedRecently;
+
+                    setRecentGame({
+                        name,
+                        playTime: humanTimePlayed,
+                        url: `https://store.steampowered.com/app/${appID}`
+                    });
+                }
+            });
+
         // Keep track of the current song
         updateSong();
         setInterval(updateSong, 10000);
@@ -79,11 +102,13 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
             <LiveContext.Provider value={liveStatus}>
                 <RepoContext.Provider value={repoCount}>
                     <RankContext.Provider value={osuRank}>
-                        <div className="max-w-screen-lg mx-auto px-6 py-4 md:px-4 md:py-10 text-center">
-                            <Navbar />
-                            <Component {...pageProps} />
-                            <Footer />
-                        </div>
+                        <GameContext.Provider value={recentGame}>
+                            <div className="max-w-screen-lg mx-auto px-6 py-4 md:px-4 md:py-10 text-center">
+                                <Navbar />
+                                <Component {...pageProps} />
+                                <Footer />
+                            </div>
+                        </GameContext.Provider>
                     </RankContext.Provider>
                 </RepoContext.Provider>
             </LiveContext.Provider>

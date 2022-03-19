@@ -8,10 +8,12 @@ specifiers:
   '@types/node': 17.0.21
   '@types/react': 17.0.40
   '@types/spotify-web-api-node': ^5.0.7
+  '@types/steamapi': ^2.2.2
   '@types/three': ^0.138.0
   '@vercel/node': ^1.13.0
   animate.css: ^4.1.1
   autoprefixer: ^10.4.4
+  dayjs: ^1.11.0
   eslint: 8.11.0
   eslint-config-next: 12.1.0
   humanize-duration: ^3.27.1
@@ -22,6 +24,7 @@ specifiers:
   react: 17.0.2
   react-dom: 17.0.2
   spotify-web-api-node: ^5.0.2
+  steamapi: ^2.2.0
   tailwindcss: ^3.0.23
   typescript: 4.6.2
 
@@ -31,6 +34,7 @@ dependencies:
   '@fortawesome/free-solid-svg-icons': 6.1.0
   '@fortawesome/react-fontawesome': 0.1.18_d2d03af444233300c17090fb2cc105c2
   animate.css: 4.1.1
+  dayjs: 1.11.0
   humanize-duration: 3.27.1
   i18n-iso-countries: 7.3.0
   iso-language-converter: 1.1.0
@@ -38,11 +42,13 @@ dependencies:
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   spotify-web-api-node: 5.0.2
+  steamapi: 2.2.0
 
 devDependencies:
   '@types/node': 17.0.21
   '@types/react': 17.0.40
   '@types/spotify-web-api-node': 5.0.7
+  '@types/steamapi': 2.2.2
   '@types/three': 0.138.0
   '@vercel/node': 1.13.0
   autoprefixer: 10.4.4_postcss@8.4.12
@@ -333,6 +339,10 @@ packages:
     resolution: {integrity: sha512-8ajd4xS3+l4Zau1OyggPv7DjeSFEIGYvG5Q8PbbBMKiaRFD53IkcvU4Bx4Ijyzw+l+Kc09L5L+MXRj0wyVLx9Q==}
     dependencies:
       '@types/spotify-api': 0.0.14
+    dev: true
+
+  /@types/steamapi/2.2.2:
+    resolution: {integrity: sha512-I64sxNOaTtp8/pFqhgz1niI8sIEgnRLv1xF8juq7nNRiyWiCWMm+bnwD4oo06nhzQH0xZt6pG0RQipmBWMFxPg==}
     dev: true
 
   /@types/three/0.138.0:
@@ -737,6 +747,10 @@ packages:
   /damerau-levenshtein/1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
     dev: true
+
+  /dayjs/1.11.0:
+    resolution: {integrity: sha512-JLC809s6Y948/FuCZPm5IX8rRhQwOiyMb2TfVVQEixG7P8Lm/gt5S7yoQZmC8x1UehI9Pb7sksEt4xx14m+7Ug==}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -2116,6 +2130,17 @@ packages:
       superagent: 6.1.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /steamapi/2.2.0:
+    resolution: {integrity: sha512-2UWklLzYQruuUC0a5AUgll1dU91/CWgiAhm/7y+rqc43kbBWereGTtmwo8wr6imjC64iV5893KChXghW0zK8Gg==}
+    dependencies:
+      steamid: 2.0.0
+    dev: false
+
+  /steamid/2.0.0:
+    resolution: {integrity: sha512-+BFJMbo+IxzyfovLR37E7APkaNfmrL3S+88T7wTMRHnQ6LBhzEawPnjfWNKM9eUL/dH45j+7vhSX4WaGXoa4/Q==}
+    engines: {node: '>=12.0.0'}
     dev: false
 
   /string.prototype.matchall/4.0.6:

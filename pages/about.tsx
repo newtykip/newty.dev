@@ -1,13 +1,14 @@
 import type { NextPage } from 'next';
 import React, { useContext } from 'react';
 import Card from '@components/Card';
-import { RankContext, RepoContext, SongContext } from './_app';
+import { GameContext, RankContext, RepoContext, SongContext } from './_app';
 import config from '@utils/config';
 
 const About: NextPage = () => {
     const currentSong = useContext(SongContext);
     const repoCount = useContext(RepoContext);
     const osuRank = useContext(RankContext);
+    const lastPlayedGame = useContext(GameContext);
 
     return (
         <React.Fragment>
@@ -52,7 +53,17 @@ const About: NextPage = () => {
                     </span>
                 </Card>
 
-                {/* todo: add anime watched and most played recently games (steam api) */}
+                <Card header="Most Played Recently?">
+                    <span className="font-bold text-xl">
+                        {lastPlayedGame?.name ? (
+                            <a href={lastPlayedGame?.url} className="hover:underline">
+                                {lastPlayedGame?.name}
+                            </a>
+                        ) : (
+                            '...'
+                        )}
+                    </span>
+                </Card>
             </div>
         </React.Fragment>
     );

@@ -2,6 +2,7 @@ import countries from 'i18n-iso-countries';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import config from '@utils/config';
 import humanise from '@utils/humanise';
+import formatDate from '@utils/formatDate';
 
 type OsuQueryType = 'id' | 'username';
 
@@ -56,7 +57,7 @@ const getUser = async (type: OsuQueryType, q: string) => {
             playCount: parseInt(user.playcount),
             accuracy: parseFloat(parseFloat(user.accuracy).toFixed(2)),
             avatar: getAvatar(user.user_id),
-            joinDate: user.join_date,
+            joinDate: formatDate(user.join_date),
             hits: {
                 ...hits,
                 total: hits[300] + hits[100] + hits[50]
