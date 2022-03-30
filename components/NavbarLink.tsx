@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import type { CSSProperties } from 'react';
 
 interface Props {
     path: string;

@@ -1,31 +1,35 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { useRouter } from 'next/router';
+import SocialIcon from './SocialIcon';
 
 const Footer: NextPage = () => {
-    const router = useRouter();
-
     return (
-        <footer className="text-sm mt-20 select-none">
-            made by{' '}
-            <span className="hover:underline">
-                <Link href="https://github.com/newtykins">newtykins</Link>
+        <footer className="text-sm mt-20 select-none flex flex-col content-center">
+            <span className="transformrelative w-full">
+                made by{' '}
+                <span className="hover:underline">
+                    <Link href="https://github.com/newtykins">newtykins</Link>
+                </span>
             </span>
-            <div className="mt-2">
-                <button
-                    className="mr-6 hover:text-red-600"
-                    onClick={() => router.push('/shhh')}
-                    aria-label="Heart"
-                >
-                    <FontAwesomeIcon icon={faHeart} />
-                </button>
 
-                <a href="https://github.com/newtykins/web">
-                    <FontAwesomeIcon icon={faGithub} />
-                </a>
+            <div className="absolute left-1/2 transform -translate-x-1/2 mt-6">
+                <SocialIcon
+                    className="hover:text-red-600"
+                    url="/shhh"
+                    aria-label="Heart"
+                    icon={faHeart}
+                    iconSize={1}
+                    shouldResize={false}
+                />
+
+                <SocialIcon
+                    url="https://github.com/newtykins/web"
+                    icon={faGithub}
+                    iconSize={1}
+                    shouldResize={false}
+                />
             </div>
         </footer>
     );
