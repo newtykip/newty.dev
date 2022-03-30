@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import Card from '@components/Card';
 import config from '@utils/config';
 import Song from '@contexts/Song';
@@ -13,12 +13,6 @@ const About: NextPage = () => {
     const githubData = useContext(GitHub);
     const osuRank = useContext(Osu);
     const lastPlayedGame = useContext(Steam);
-    const [repo, setRepo] = useState<string>(null);
-
-    useEffect(() => {
-        if (githubData?.recentCommit?.repoName)
-            setRepo(`${config.credentials.github.username}/${githubData?.recentCommit?.repoName}`);
-    }, [githubData]);
 
     return (
         <React.Fragment>
@@ -32,11 +26,10 @@ const About: NextPage = () => {
                 Sometimes that stuff is pretty <span className="rainbow">cool</span>
             </h2>
 
-            {/* className="grid grid-flow-row justify-center items-center md:grid-flow-col gap-2 mb-8" */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mb-8 place-items-center content-center items-center justify-center">
                 <Card header="GitHub Repos">
                     <a
-                        href={`https://github.com/${config.credentials.github.username}`}
+                        href={`https://github.com/${config.credentials.github.username}?tab=repositories`}
                         className="heading text-3xl hover:underline"
                     >
                         {githubData?.repoCount ?? '...'}
@@ -67,13 +60,17 @@ const About: NextPage = () => {
                 <Card header="Listening to">
                     <span className="font-bold text-xl">
                         {currentSong ? (
-                            currentSong?.name ? (
-                                <a href={currentSong?.url} className="hover:underline">
-                                    {currentSong?.artist} - {currentSong?.name}
-                                </a>
-                            ) : (
-                                'nothing (:'
-                            )
+                            <a
+                                href={
+                                    currentSong?.url ??
+                                    'https://open.spotify.com/user/31f5j3pn6dafanybum4r4fwsppea'
+                                }
+                                className="hover:underline"
+                            >
+                                {currentSong?.name
+                                    ? `${currentSong?.artist} - ${currentSong?.name}`
+                                    : 'nothing (:'}
+                            </a>
                         ) : (
                             '...'
                         )}
@@ -82,11 +79,15 @@ const About: NextPage = () => {
 
                 <Card header="Most Recent Commit">
                     <span className="subheading font-bold text-lg visible hidden md:inline">
-                        {repo ? (
+                        {githubData?.recentCommit ? (
                             <React.Fragment>
                                 (
-                                <a href={`https://github.com/${repo}`} className="hover:underline">
-                                    {repo}
+                                <a
+                                    href={`https://github.com/${githubData?.recentCommit?.repoOwner}/${githubData?.recentCommit?.repoName}`}
+                                    className="hover:underline"
+                                >
+                                    {githubData?.recentCommit?.repoOwner}/
+                                    {githubData?.recentCommit?.repoName}
                                 </a>
                                 )
                             </React.Fragment>
@@ -98,11 +99,24 @@ const About: NextPage = () => {
                     </span>
                     <span className="font-bold text-xl">
                         {githubData?.recentCommit ? (
+                            <a href={githubData?.recentCommit?.url} className="hover:underline">
+                                {githubData?.recentCommit?.message}
+                            </a>
+                        ) : (
+                            '...'
+                        )}
+                    </span>
+                </Card>
+
+                <Card header="Most Recent Star">
+                    <span className="font-bold text-xl">
+                        {githubData?.recentStar ? (
                             <a
-                                href={`https://github.com/${repo}/commit/${githubData?.recentCommit?.id}`}
+                                href={`https://github.com/${githubData?.recentStar?.repoOwner}/${githubData?.recentStar?.repoName}`}
                                 className="hover:underline"
                             >
-                                {githubData?.recentCommit?.message}
+                                {githubData?.recentStar?.repoOwner}/
+                                {githubData?.recentStar?.repoName}
                             </a>
                         ) : (
                             '...'

@@ -13,7 +13,7 @@ import config from '@utils/config';
 import SongContext, { Song } from '@contexts/Song';
 import Twitch, { LiveStatus } from '@contexts/Twitch';
 import Steam, { Game } from '@contexts/Steam';
-import GitHub, { CommitData } from '@contexts/GitHub';
+import GitHub, { CommitData, StarData } from '@contexts/GitHub';
 import Osu from '@contexts/Osu';
 import Favicon from 'react-favicon';
 import Head from 'next/head';
@@ -23,6 +23,7 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
     const [liveStatus, setLiveStatus] = useState<LiveStatus>(null);
     const [repoCount, setRepoCount] = useState<number>(null);
     const [recentCommit, setRecentCommit] = useState<CommitData>(null);
+    const [recentStar, setRecentStar] = useState<StarData>(null);
     const [osuRank, setOsuRank] = useState<number>(null);
     const [recentGame, setRecentGame] = useState<Game>();
 
@@ -72,10 +73,26 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
                     c => c.author.name === config.credentials.github.username
                 );
 
+                const [repoName, repoOwner] = recentPush.repo.name.split('/');
+
                 setRecentCommit({
-                    id: recentCommit.sha,
-                    repoName: recentPush.repo.name.split('/')[1],
+                    repoOwner,
+                    repoName,
+                    url: `https://github.com/${repoOwner}/${repoName}/${recentCommit.sha}`,
                     message: recentCommit.message
+                });
+            });
+
+        // Fetch the most recently starred repository
+        fetch(`https://api.github.com/users/${config.credentials.github.username}/starred`)
+            .then(res => res.json())
+            .then((repos: any[]) => {
+                const [recentStar] = repos;
+                const [repoOwner, repoName] = recentStar['full_name'].split('/');
+
+                setRecentStar({
+                    repoOwner,
+                    repoName
                 });
             });
 
@@ -119,7 +136,7 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
 
             <SongContext.Provider value={currentSong}>
                 <Twitch.Provider value={liveStatus}>
-                    <GitHub.Provider value={{ repoCount, recentCommit }}>
+                    <GitHub.Provider value={{ repoCount, recentCommit, recentStar }}>
                         <Osu.Provider value={osuRank}>
                             <Steam.Provider value={recentGame}>
                                 <div className="max-w-screen-lg mx-auto px-6 py-4 md:px-4 md:py-10 text-center">
