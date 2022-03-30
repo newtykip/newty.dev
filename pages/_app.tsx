@@ -61,25 +61,20 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
             .then((repos: any[]) => setRepoCount(repos.length));
 
         // Fetch most recent commit
-        fetch(`https://api.github.com/users/${config.credentials.github.username}/events/public`)
+        fetch(
+            `https://api.github.com/search/commits?q=author:${config.credentials.github.username}&sort=author-date&order=desc&page=1`
+        )
             .then(res => res.json())
-            .then((events: any[]) => {
-                const [recentPush] = events.filter(e => e.type === 'PushEvent') ?? [];
-                const {
-                    payload: { commits }
-                } = recentPush;
-
-                const [recentCommit] = commits.filter(
-                    c => c.author.name === config.credentials.github.username
-                );
-
-                const [repoName, repoOwner] = recentPush.repo.name.split('/');
+            .then(({ items: commits }: { items: any[] }) => {
+                const [recentCommit] = commits;
+                const [repoOwner, repoName] = recentCommit?.repository?.['full_name']?.split('/');
+                const { message } = recentCommit?.commit;
 
                 setRecentCommit({
                     repoOwner,
                     repoName,
                     url: `https://github.com/${repoOwner}/${repoName}/${recentCommit.sha}`,
-                    message: recentCommit.message
+                    message
                 });
             });
 
@@ -88,7 +83,7 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
             .then(res => res.json())
             .then((repos: any[]) => {
                 const [recentStar] = repos;
-                const [repoOwner, repoName] = recentStar['full_name'].split('/');
+                const [repoOwner, repoName] = recentStar?.['full_name']?.split('/');
 
                 setRecentStar({
                     repoOwner,
