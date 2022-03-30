@@ -24,11 +24,11 @@ specifiers:
   iso-language-converter: ^1.1.0
   next: 12.1.0
   next-pwa: ^5.4.6
-  picocolors: ^1.0.0
   postcss: ^8.4.12
   react: 17.0.2
   react-dom: 17.0.2
   react-favicon: ^1.0.0
+  skinview3d: ^2.2.1
   spotify-web-api-node: ^5.0.2
   steamapi: ^2.2.0
   tailwindcss: ^3.0.23
@@ -47,10 +47,10 @@ dependencies:
   iso-language-converter: 1.1.0
   next: 12.1.0_react-dom@17.0.2+react@17.0.2
   next-pwa: 5.4.6_next@12.1.0
-  picocolors: 1.0.0
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-favicon: 1.0.0_react@17.0.2
+  skinview3d: 2.2.1
   spotify-web-api-node: 5.0.2
   steamapi: 2.2.0
 
@@ -1542,6 +1542,10 @@ packages:
   /@types/node/17.0.21:
     resolution: {integrity: sha512-DBZCJbhII3r90XbQxI8Y9IjjiiOGlZ0Hr32omXIZvwwZ7p4DMMXGrKXVyPfuoBOri9XNtL0UK69jYIBIsRX3QQ==}
 
+  /@types/offscreencanvas/2019.6.4:
+    resolution: {integrity: sha512-u8SAgdZ8ROtkTF+mfZGOscl0or6BSj9A4g37e6nvxDc+YB/oDut0wHkK2PBBiC2bNR8TS0CPV+1gAk4fNisr1Q==}
+    dev: false
+
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
     dev: true
@@ -1585,6 +1589,10 @@ packages:
   /@types/tailwindcss/3.0.9:
     resolution: {integrity: sha512-uZjNKNjlA6cr6py/GWsDjevJb/Bl0fmaMNUdIpNMW3TJGJzxN9O6uFWx97LiSK7ithWNrrDSytq1FdvHpgSvWg==}
     dev: true
+
+  /@types/three/0.136.1:
+    resolution: {integrity: sha512-gzTw6RR4dU8sGf+RpLBWWKHRVIJ4gwKVQPk+IFCgha04Efg/itXYUalX6iBcYeSmaDu0qE5M7uTq0XLQpU4FAg==}
+    dev: false
 
   /@types/three/0.138.0:
     resolution: {integrity: sha512-D8AoV7h2kbCfrv/DcebHOFh1WDwyus3HdooBkAwcBikXArdqnsQ38PQ85JCunnvun160oA9jz53GszF3zch3tg==}
@@ -3931,6 +3939,20 @@ packages:
       totalist: 1.1.0
     dev: false
 
+  /skinview-utils/0.6.2:
+    resolution: {integrity: sha512-UdjWwXCVZobtG+dc7ilvMRbtXYSqPJtWKPFdgWc44Gs4aoOmZML2lErr77h7uussXo9zrcR+fPizGshGpdETvQ==}
+    dependencies:
+      '@types/offscreencanvas': 2019.6.4
+    dev: false
+
+  /skinview3d/2.2.1:
+    resolution: {integrity: sha512-VOzB2jcsXWTmyEqE6nIXhECg1+29ZcZjP0tw9mFIGN9Y4P/hDlAt2ev7NT7J0Sqgei5UJenkorW24VDZHCepKw==}
+    dependencies:
+      '@types/three': 0.136.1
+      skinview-utils: 0.6.2
+      three: 0.136.0
+    dev: false
+
   /slash/3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
@@ -4198,6 +4220,10 @@ packages:
   /text-table/0.2.0:
     resolution: {integrity: sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=}
     dev: true
+
+  /three/0.136.0:
+    resolution: {integrity: sha512-+fEMX7nYLz2ZesVP/dyifli5Jf8gR3XPAnFJveQ80aMhibFduzrADnjMbARXh8+W9qLK7rshJCjAIL/6cDxC+A==}
+    dev: false
 
   /to-fast-properties/2.0.0:
     resolution: {integrity: sha1-3F5pjL0HkmW8c+A3doGk5Og/YW4=}

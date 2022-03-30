@@ -20,6 +20,9 @@ export default {
         steam: {
             apiKey: process.env.STEAM_API_KEY,
             userId: '76561198163553688'
+        },
+        minecraft: {
+            uuid: '7e366123-6beb-48ec-b6e1-47dbd319f41d'
         }
     },
     endpoints: {

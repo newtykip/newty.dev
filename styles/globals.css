@@ -31,6 +31,13 @@
     animation-duration: 1s;
 }
 
+.skin {
+    padding: 0;
+    margin: auto;
+    display: block;
+    width: 800px;
+}
+
 *::-webkit-scrollbar {
     width: 16px;
 }

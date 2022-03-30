@@ -17,7 +17,6 @@ import Repo from '@contexts/Repo';
 import Osu from '@contexts/Osu';
 import Favicon from 'react-favicon';
 import Head from 'next/head';
-import pc from 'picocolors';
 
 const App: NextPage<AppProps> = ({ Component, pageProps }) => {
     const [currentSong, setCurrentSong] = useState<Song>(null);

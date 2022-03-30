@@ -17,7 +17,7 @@ const About: NextPage = () => {
     return (
         <React.Fragment>
             <h1 className="heading text-4xl">
-                Hi, I'm <span className="rainbow">newt</span>.
+                Hi, I'm <span className="rainbow">newt!</span>
             </h1>
 
             <span className="subheading text-xl">I do stuff on the internet sometimes.</span>
