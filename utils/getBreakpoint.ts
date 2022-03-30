@@ -3,7 +3,7 @@ import tailwindConfig from '../tailwind.config';
 
 const {
     theme: { screens }
-} = resolveConfig(tailwindConfig);
+} = resolveConfig(tailwindConfig as any);
 
 export default function getBreakpoint() {
     let breakpoint: string;

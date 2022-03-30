@@ -127,8 +127,8 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
             <Head>
                 <title>newt!!</title>
             </Head>
-            {/* 
-            <Favicon url={frames} animated={true} animationDelay={60} /> */}
+
+            <Favicon url={frames} animated={true} animationDelay={60} />
 
             <ThemeProvider defaultTheme="system" attribute="class">
                 <SongContext.Provider value={currentSong}>

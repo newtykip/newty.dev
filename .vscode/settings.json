@@ -7,7 +7,7 @@
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
         "**/.next": true,
-        "**/node_modules": true,
+        "**/node_modules": false,
         "**/pnpm-lock.yaml": true,
         "**/next-env.d.ts": true,
         "**/.eslintrc.json": true

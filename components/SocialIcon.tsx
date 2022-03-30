@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 interface IconProps {
-    icon: IconProp;
+    icon: IconProp | any;
     iconClass?: string;
     calculatedSize: number;
 }
@@ -20,14 +20,18 @@ interface Props extends Omit<IconProps, 'calculatedSize'> {
     shouldResize?: boolean;
 }
 
-const Icon: NextPage<IconProps> = ({ icon, calculatedSize, iconClass }) => (
-    <FontAwesomeIcon
-        icon={icon}
-        className={`text-${calculatedSize === 1 ? '' : calculatedSize}xl ${
-            iconClass ? ` ${iconClass}` : ''
-        }`}
-    />
-);
+const Icon: NextPage<IconProps> = ({ icon, calculatedSize, iconClass }) =>
+    icon?.prefix ? (
+        <FontAwesomeIcon
+            icon={icon}
+            className={`text-${calculatedSize === 1 ? '' : calculatedSize}xl ${
+                iconClass ? ` ${iconClass}` : ''
+            }`}
+        />
+    ) : (
+        // @ts-expect-error
+        <Icon />
+    );
 
 const SocialIcon: NextPage<Props> = ({
     action,
@@ -60,7 +64,13 @@ const SocialIcon: NextPage<Props> = ({
             {typeof action === 'string' ? (
                 action.startsWith('/') ? (
                     <Link href={action}>
-                        <Icon icon={icon} calculatedSize={calculatedSize} iconClass={iconClass} />
+                        <a>
+                            <Icon
+                                icon={icon}
+                                calculatedSize={calculatedSize}
+                                iconClass={iconClass}
+                            />
+                        </a>
                     </Link>
                 ) : (
                     <a href={action}>
