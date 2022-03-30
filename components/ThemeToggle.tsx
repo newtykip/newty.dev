@@ -3,9 +3,18 @@ import React from 'react';
 import { useTheme } from 'next-themes';
 
 const ThemeToggle: NextPage = () => {
-    const { theme, setTheme } = useTheme();
+    const { theme, setTheme, systemTheme } = useTheme();
 
-    const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
+    const toggleTheme = () =>
+        setTheme(
+            theme === 'system'
+                ? systemTheme === 'dark'
+                    ? 'light'
+                    : 'dark'
+                : theme === 'dark'
+                ? 'light'
+                : 'dark'
+        );
 
     return (
         <button className="mr-6 hover:cursor-pointer relative top-1" onClick={toggleTheme}>
