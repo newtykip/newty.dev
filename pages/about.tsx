@@ -7,7 +7,6 @@ import GitHub from '@contexts/GitHub';
 import Osu from '@contexts/Osu';
 import Steam from '@contexts/Steam';
 import Image from 'next/image';
-import truncate from 'lodash.truncate';
 
 const About: NextPage = () => {
     const currentSong = useContext(Song);
@@ -34,7 +33,7 @@ const About: NextPage = () => {
             </h2>
 
             {/* className="grid grid-flow-row justify-center items-center md:grid-flow-col gap-2 mb-8" */}
-            <div className="grid grid-cols-3 gap-2 mb-8 items-center justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mb-8 items-center justify-center">
                 <Card header="GitHub Repos">
                     <a
                         href={`https://github.com/${config.credentials.github.username}`}
