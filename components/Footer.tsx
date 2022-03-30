@@ -6,7 +6,7 @@ import SocialIcon from './SocialIcon';
 
 const Footer: NextPage = () => {
     return (
-        <footer className="text-sm mt-20 select-none flex flex-col content-center">
+        <footer className="text-sm mt-20 select-none flex flex-col content-center dark:text-nord-4">
             <span className="transformrelative w-full">
                 made by{' '}
                 <span className="hover:underline">
@@ -17,7 +17,7 @@ const Footer: NextPage = () => {
             <div className="absolute left-1/2 transform -translate-x-1/2 mt-6">
                 <SocialIcon
                     className="hover:text-red-600"
-                    url="/shhh"
+                    action="/shhh"
                     aria-label="Heart"
                     icon={faHeart}
                     iconSize={1}
@@ -25,7 +25,7 @@ const Footer: NextPage = () => {
                 />
 
                 <SocialIcon
-                    url="https://github.com/newtykins/web"
+                    action="https://github.com/newtykins/web"
                     icon={faGithub}
                     iconSize={1}
                     shouldResize={false}

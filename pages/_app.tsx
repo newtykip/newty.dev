@@ -17,6 +17,7 @@ import GitHub, { CommitData, StarData } from '@contexts/GitHub';
 import Osu from '@contexts/Osu';
 import Favicon from 'react-favicon';
 import Head from 'next/head';
+import { ThemeProvider } from 'next-themes';
 
 const App: NextPage<AppProps> = ({ Component, pageProps }) => {
     const [currentSong, setCurrentSong] = useState<Song>(null);
@@ -129,21 +130,23 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
             {/* 
             <Favicon url={frames} animated={true} animationDelay={60} /> */}
 
-            <SongContext.Provider value={currentSong}>
-                <Twitch.Provider value={liveStatus}>
-                    <GitHub.Provider value={{ repoCount, recentCommit, recentStar }}>
-                        <Osu.Provider value={osuRank}>
-                            <Steam.Provider value={recentGame}>
-                                <div className="max-w-screen-lg mx-auto px-6 py-4 md:px-4 md:py-10 text-center">
-                                    <Navbar />
-                                    <Component {...pageProps} />
-                                    <Footer />
-                                </div>
-                            </Steam.Provider>
-                        </Osu.Provider>
-                    </GitHub.Provider>
-                </Twitch.Provider>
-            </SongContext.Provider>
+            <ThemeProvider defaultTheme="system" attribute="class">
+                <SongContext.Provider value={currentSong}>
+                    <Twitch.Provider value={liveStatus}>
+                        <GitHub.Provider value={{ repoCount, recentCommit, recentStar }}>
+                            <Osu.Provider value={osuRank}>
+                                <Steam.Provider value={recentGame}>
+                                    <div className="max-w-screen-lg mx-auto px-6 py-4 md:px-4 md:py-10 text-center">
+                                        <Navbar />
+                                        <Component {...pageProps} />
+                                        <Footer />
+                                    </div>
+                                </Steam.Provider>
+                            </Osu.Provider>
+                        </GitHub.Provider>
+                    </Twitch.Provider>
+                </SongContext.Provider>
+            </ThemeProvider>
         </React.Fragment>
     );
 };

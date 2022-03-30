@@ -1,15 +1,8 @@
 :root {
     --gradient: linear-gradient(90deg, #11998e 0%, #38ef7d);
-    --color-muted: #4a5568;
 }
 
-.heading {
-    line-height: 1.25;
-}
-
-.subheading {
-    color: var(--color-muted);
-}
+/* Animations */
 
 .rainbow {
     background: var(--gradient);
@@ -31,12 +24,16 @@
     animation-duration: 1s;
 }
 
-.skin {
-    padding: 0;
-    margin: auto;
-    display: block;
-    width: 800px;
+@keyframes rainbow {
+    from {
+        filter: hue-rotate(0deg);
+    }
+    to {
+        filter: hue-rotate(-360deg);
+    }
 }
+
+/* Scrollbar */
 
 *::-webkit-scrollbar {
     width: 16px;
@@ -58,25 +55,9 @@
     background-color: #555;
 }
 
+/* Text select */
+
 ::selection {
     background: #555;
     -webkit-text-fill-color: white;
-}
-
-.hidden {
-    display: none;
-    visibility: hidden;
-}
-
-img {
-    user-select: none;
-}
-
-@keyframes rainbow {
-    from {
-        filter: hue-rotate(0deg);
-    }
-    to {
-        filter: hue-rotate(-360deg);
-    }
 }

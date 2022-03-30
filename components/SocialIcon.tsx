@@ -14,7 +14,7 @@ interface IconProps {
 
 interface Props extends Omit<IconProps, 'calculatedSize'> {
     className?: string;
-    url?: string;
+    action?: string | (() => void);
     tooltip?: string;
     iconSize?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
     shouldResize?: boolean;
@@ -30,7 +30,7 @@ const Icon: NextPage<IconProps> = ({ icon, calculatedSize, iconClass }) => (
 );
 
 const SocialIcon: NextPage<Props> = ({
-    url,
+    action,
     icon,
     className,
     tooltip,
@@ -57,14 +57,20 @@ const SocialIcon: NextPage<Props> = ({
 
     return (
         <span className={`mr-6 hover:cursor-pointer ${className ?? ''}`} title={tooltip}>
-            {url.startsWith('/') ? (
-                <Link href={url}>
-                    <Icon icon={icon} calculatedSize={calculatedSize} iconClass={iconClass} />
-                </Link>
+            {typeof action === 'string' ? (
+                action.startsWith('/') ? (
+                    <Link href={action}>
+                        <Icon icon={icon} calculatedSize={calculatedSize} iconClass={iconClass} />
+                    </Link>
+                ) : (
+                    <a href={action}>
+                        <Icon icon={icon} calculatedSize={calculatedSize} iconClass={iconClass} />
+                    </a>
+                )
             ) : (
-                <a href={url}>
-                    <Icon icon={icon} calculatedSize={calculatedSize} iconClass={iconClass} />
-                </a>
+                <button onClick={action}>
+                    <Icon icon={icon} calculatedSize={calculatedSize} iconClass={iconClass}></Icon>
+                </button>
             )}
         </span>
     );

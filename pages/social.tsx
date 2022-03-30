@@ -28,23 +28,23 @@ const Social: NextPage = () => {
             </span>
 
             <div className="mt-10 mb-10">
-                <SocialIcon icon={faDiscord} url="https://discord.gg/brEhN5Y7YK" iconSize={4} />
+                <SocialIcon icon={faDiscord} action="https://discord.gg/brEhN5Y7YK" iconSize={4} />
 
                 <SocialIcon
                     icon={faSpotify}
-                    url="https://open.spotify.com/user/31f5j3pn6dafanybum4r4fwsppea?si=f2628f2bf1b74f15"
+                    action="https://open.spotify.com/user/31f5j3pn6dafanybum4r4fwsppea?si=f2628f2bf1b74f15"
                     iconSize={4}
                 />
 
                 <SocialIcon
                     icon={faGithub}
-                    url={`https://github.com/${config.credentials.github.username}`}
+                    action={`https://github.com/${config.credentials.github.username}`}
                     iconSize={4}
                 />
 
                 <SocialIcon
                     icon={faTwitch}
-                    url={`https://twitch.tv/${liveStatus?.username}`}
+                    action={`https://twitch.tv/${liveStatus?.username}`}
                     className={liveStatus?.live ? 'text-red-600' : ''}
                     tooltip={liveStatus?.live ? 'I am live on Twitch, come and say hi!' : ''}
                     iconSize={4}
@@ -52,7 +52,7 @@ const Social: NextPage = () => {
 
                 <SocialIcon
                     icon={faSteam}
-                    url="https://steamcommunity.com/id/newtykins/"
+                    action="https://steamcommunity.com/id/newtykins/"
                     iconSize={4}
                 />
             </div>

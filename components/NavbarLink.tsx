@@ -13,7 +13,9 @@ const NavbarLink: NextPage<Props> = ({ path, content }) => {
     return (
         <li
             className={`mr-4 ${
-                isActive ? 'md:box-border border-slate-500 md:p-2 md:border-2' : ''
+                isActive
+                    ? 'md:box-border border-slate-500 dark:border-nord-4 md:p-2 md:border-2'
+                    : ''
             }`}
         >
             <button

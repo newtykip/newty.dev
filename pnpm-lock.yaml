@@ -24,6 +24,7 @@ specifiers:
   iso-language-converter: ^1.1.0
   next: 12.1.0
   next-pwa: ^5.4.6
+  next-themes: ^0.1.1
   postcss: ^8.4.12
   react: 17.0.2
   react-dom: 17.0.2
@@ -47,6 +48,7 @@ dependencies:
   iso-language-converter: 1.1.0
   next: 12.1.0_react-dom@17.0.2+react@17.0.2
   next-pwa: 5.4.6_next@12.1.0
+  next-themes: 0.1.1_caa633a00319350dbda42996613fe26c
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-favicon: 1.0.0_react@17.0.2
@@ -3310,6 +3312,18 @@ packages:
       - supports-color
       - uglify-js
       - webpack
+    dev: false
+
+  /next-themes/0.1.1_caa633a00319350dbda42996613fe26c:
+    resolution: {integrity: sha512-Iqxt6rhS/KfK/iHJ0tfFjTcdLEAI0AgwFuAFrMwLOPK5e+MI3I+fzyvBoS+VaOS+NldUiazurhgwYhrfV0VXsQ==}
+    peerDependencies:
+      next: '>=11.1.1'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 12.1.0_react-dom@17.0.2+react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /next/12.1.0_react-dom@17.0.2+react@17.0.2:

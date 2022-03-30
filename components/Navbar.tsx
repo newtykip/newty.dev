@@ -8,12 +8,15 @@ import { useContext, useRef } from 'react';
 import Twitch from '@contexts/Twitch';
 import getBreakpoint from '@utils/getBreakpoint';
 import useResize from '@hooks/useResize';
+import { useTheme } from 'next-themes';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar: NextPage = () => {
     const router = useRouter();
     const liveStatus = useContext(Twitch);
     const navLinks = useRef<HTMLUListElement>();
     const socialIcons = useRef<HTMLDivElement>();
+    const { theme, setTheme } = useTheme();
 
     useResize(() => {
         const breakpoint = getBreakpoint();
@@ -47,12 +50,17 @@ const Navbar: NextPage = () => {
                 className="md:w-5/12 md:text-right items-center md:justify-end hidden"
                 ref={socialIcons}
             >
-                <SocialIcon icon={faGithub} url="https://github.com/newtykins" />
+                <SocialIcon icon={faGithub} action="https://github.com/newtykins" />
                 <SocialIcon
                     icon={faTwitch}
-                    url={`https://twitch.tv/${liveStatus?.username}`}
+                    action={`https://twitch.tv/${liveStatus?.username}`}
                     className={liveStatus?.live ? 'text-red-600 twitchAnim' : ''}
                     tooltip={liveStatus?.live ? 'I am live on Twitch, come and say hi!' : ''}
+                />
+
+                <SocialIcon
+                    icon={theme === 'dark' ? faSun : faMoon}
+                    action={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                 />
             </div>
         </header>
