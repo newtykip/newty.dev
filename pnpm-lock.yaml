@@ -6,6 +6,7 @@ specifiers:
   '@fortawesome/free-solid-svg-icons': ^6.1.0
   '@fortawesome/react-fontawesome': ^0.1.18
   '@next/bundle-analyzer': ^12.1.0
+  '@types/lodash.truncate': ^4.4.6
   '@types/node': 17.0.21
   '@types/react': 17.0.40
   '@types/spotify-web-api-node': ^5.0.7
@@ -22,6 +23,7 @@ specifiers:
   humanize-duration: ^3.27.1
   i18n-iso-countries: ^7.3.0
   iso-language-converter: ^1.1.0
+  lodash.truncate: ^4.4.2
   next: 12.1.0
   next-pwa: ^5.4.6
   postcss: ^8.4.12
@@ -45,6 +47,7 @@ dependencies:
   humanize-duration: 3.27.1
   i18n-iso-countries: 7.3.0
   iso-language-converter: 1.1.0
+  lodash.truncate: 4.4.2
   next: 12.1.0_react-dom@17.0.2+react@17.0.2
   next-pwa: 5.4.6_next@12.1.0
   react: 17.0.2
@@ -55,6 +58,7 @@ dependencies:
   steamapi: 2.2.0
 
 devDependencies:
+  '@types/lodash.truncate': 4.4.6
   '@types/node': 17.0.21
   '@types/react': 17.0.40
   '@types/spotify-web-api-node': 5.0.7
@@ -1533,6 +1537,16 @@ packages:
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=}
+    dev: true
+
+  /@types/lodash.truncate/4.4.6:
+    resolution: {integrity: sha512-PTZoD9mSRANSAHnb89AmoIiuthTPGfehBIo4ojd8U8CFc3aac89IVaaIRQNJbglY8SOJoOZEEVE3nNND3uRoyg==}
+    dependencies:
+      '@types/lodash': 4.14.181
+    dev: true
+
+  /@types/lodash/4.14.181:
+    resolution: {integrity: sha512-n3tyKthHJbkiWhDZs3DkhkCzt2MexYHXlX0td5iMplyfwketaOeKboEVBqzceH7juqvEg3q5oUoBFxSLu7zFag==}
     dev: true
 
   /@types/minimatch/3.0.5:
@@ -3184,6 +3198,10 @@ packages:
 
   /lodash.sortby/4.7.0:
     resolution: {integrity: sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=}
+    dev: false
+
+  /lodash.truncate/4.4.2:
+    resolution: {integrity: sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM=}
     dev: false
 
   /lodash/4.17.21:

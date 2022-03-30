@@ -1,18 +1,25 @@
 import type { NextPage } from 'next';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Card from '@components/Card';
 import config from '@utils/config';
 import Song from '@contexts/Song';
-import Repo from '@contexts/Repo';
+import GitHub from '@contexts/GitHub';
 import Osu from '@contexts/Osu';
 import Steam from '@contexts/Steam';
 import Image from 'next/image';
+import truncate from 'lodash.truncate';
 
 const About: NextPage = () => {
     const currentSong = useContext(Song);
-    const repoCount = useContext(Repo);
+    const githubData = useContext(GitHub);
     const osuRank = useContext(Osu);
     const lastPlayedGame = useContext(Steam);
+    const [repo, setRepo] = useState<string>(null);
+
+    useEffect(() => {
+        if (githubData?.recentCommit?.repoName)
+            setRepo(`${config.credentials.github.username}/${githubData?.recentCommit?.repoName}`);
+    }, [githubData]);
 
     return (
         <React.Fragment>
@@ -26,13 +33,14 @@ const About: NextPage = () => {
                 Sometimes that stuff is pretty <span className="rainbow">cool</span>
             </h2>
 
-            <div className="grid grid-flow-row justify-center items-center md:grid-flow-col gap-2 mb-8">
+            {/* className="grid grid-flow-row justify-center items-center md:grid-flow-col gap-2 mb-8" */}
+            <div className="grid grid-cols-3 gap-2 mb-8 items-center justify-center">
                 <Card header="GitHub Repos">
                     <a
                         href={`https://github.com/${config.credentials.github.username}`}
                         className="heading text-3xl hover:underline"
                     >
-                        {repoCount ?? '...'}
+                        {githubData?.repoCount ?? '...'}
                     </a>
                 </Card>
 
@@ -43,6 +51,18 @@ const About: NextPage = () => {
                     >
                         {osuRank ? `#${osuRank?.toLocaleString()}` : '...'}
                     </a>
+                </Card>
+
+                <Card header="Most Played Recently?">
+                    <span className="font-bold text-xl">
+                        {lastPlayedGame?.name ? (
+                            <a href={lastPlayedGame?.url} className="hover:underline">
+                                {lastPlayedGame?.name}
+                            </a>
+                        ) : (
+                            '...'
+                        )}
+                    </span>
                 </Card>
 
                 <Card header="Listening to">
@@ -61,11 +81,29 @@ const About: NextPage = () => {
                     </span>
                 </Card>
 
-                <Card header="Most Played Recently?">
+                <Card header="Most Recent Commit">
+                    <span className="subheading font-bold text-lg visible hidden md:inline">
+                        {repo ? (
+                            <React.Fragment>
+                                (
+                                <a href={`https://github.com/${repo}`} className="hover:underline">
+                                    {repo}
+                                </a>
+                                )
+                            </React.Fragment>
+                        ) : (
+                            '...'
+                        )}
+
+                        <br />
+                    </span>
                     <span className="font-bold text-xl">
-                        {lastPlayedGame?.name ? (
-                            <a href={lastPlayedGame?.url} className="hover:underline">
-                                {lastPlayedGame?.name}
+                        {githubData?.recentCommit ? (
+                            <a
+                                href={`https://github.com/${repo}/commit/${githubData?.recentCommit?.id}`}
+                                className="hover:underline"
+                            >
+                                {githubData?.recentCommit?.message}
                             </a>
                         ) : (
                             '...'
@@ -73,8 +111,6 @@ const About: NextPage = () => {
                     </span>
                 </Card>
             </div>
-
-            {/* todo: add more content */}
 
             <Image src="/jinx.webp" width={250} height={250} className="rounded-3xl" />
         </React.Fragment>

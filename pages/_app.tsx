@@ -13,7 +13,7 @@ import config from '@utils/config';
 import SongContext, { Song } from '@contexts/Song';
 import Twitch, { LiveStatus } from '@contexts/Twitch';
 import Steam, { Game } from '@contexts/Steam';
-import Repo from '@contexts/Repo';
+import GitHub, { CommitData } from '@contexts/GitHub';
 import Osu from '@contexts/Osu';
 import Favicon from 'react-favicon';
 import Head from 'next/head';
@@ -22,6 +22,7 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
     const [currentSong, setCurrentSong] = useState<Song>(null);
     const [liveStatus, setLiveStatus] = useState<LiveStatus>(null);
     const [repoCount, setRepoCount] = useState<number>(null);
+    const [recentCommit, setRecentCommit] = useState<CommitData>(null);
     const [osuRank, setOsuRank] = useState<number>(null);
     const [recentGame, setRecentGame] = useState<Game>();
 
@@ -56,7 +57,27 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
         // Fetch GitHub repo count
         fetch(`https://api.github.com/users/${config.credentials.github.username}/repos`)
             .then(res => res.json())
-            .then(data => setRepoCount(data.length));
+            .then((repos: any[]) => setRepoCount(repos.length));
+
+        // Fetch most recent commit
+        fetch(`https://api.github.com/users/${config.credentials.github.username}/events/public`)
+            .then(res => res.json())
+            .then((events: any[]) => {
+                const [recentPush] = events.filter(e => e.type === 'PushEvent') ?? [];
+                const {
+                    payload: { commits }
+                } = recentPush;
+
+                const [recentCommit] = commits.filter(
+                    c => c.author.name === config.credentials.github.username
+                );
+
+                setRecentCommit({
+                    id: recentCommit.sha,
+                    repoName: recentPush.repo.name.split('/')[1],
+                    message: recentCommit.message
+                });
+            });
 
         // Fetch osu! rank
         fetch(`${window.location.origin}/api/osu`)
@@ -98,7 +119,7 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
 
             <SongContext.Provider value={currentSong}>
                 <Twitch.Provider value={liveStatus}>
-                    <Repo.Provider value={repoCount}>
+                    <GitHub.Provider value={{ repoCount, recentCommit }}>
                         <Osu.Provider value={osuRank}>
                             <Steam.Provider value={recentGame}>
                                 <div className="max-w-screen-lg mx-auto px-6 py-4 md:px-4 md:py-10 text-center">
@@ -108,7 +129,7 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
                                 </div>
                             </Steam.Provider>
                         </Osu.Provider>
-                    </Repo.Provider>
+                    </GitHub.Provider>
                 </Twitch.Provider>
             </SongContext.Provider>
         </React.Fragment>

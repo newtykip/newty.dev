@@ -8,6 +8,5 @@ module.exports = {
                 sans: ['Roboto Mono', ...defaultTheme.fontFamily.sans]
             }
         }
-    },
-    plugins: []
+    }
 };
