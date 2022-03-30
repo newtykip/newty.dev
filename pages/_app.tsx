@@ -73,7 +73,7 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
                 setRecentCommit({
                     repoOwner,
                     repoName,
-                    url: `https://github.com/${repoOwner}/${repoName}/${recentCommit.sha}`,
+                    url: `https://github.com/${repoOwner}/${repoName}/commit/${recentCommit.sha}`,
                     message
                 });
             });
@@ -126,8 +126,8 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
             <Head>
                 <title>newt!!</title>
             </Head>
-
-            <Favicon url={frames} animated={true} animationDelay={60} />
+            {/* 
+            <Favicon url={frames} animated={true} animationDelay={60} /> */}
 
             <SongContext.Provider value={currentSong}>
                 <Twitch.Provider value={liveStatus}>
