@@ -8,8 +8,6 @@ import React, { useContext, useRef } from 'react';
 import Twitch from '@contexts/Twitch';
 import getBreakpoint from '@utils/getBreakpoint';
 import useResize from '@hooks/useResize';
-import { useTheme } from 'next-themes';
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import useLoaded from '@hooks/useLoaded';
 import ThemeToggle from './ThemeToggle';
 
@@ -18,7 +16,6 @@ const Navbar: NextPage = () => {
     const liveStatus = useContext(Twitch);
     const navLinks = useRef<HTMLUListElement>();
     const socialIcons = useRef<HTMLDivElement>();
-    const { theme, setTheme } = useTheme();
     const loaded = useLoaded();
 
     useResize(() => {
@@ -61,16 +58,7 @@ const Navbar: NextPage = () => {
                     tooltip={liveStatus?.live ? 'I am live on Twitch, come and say hi!' : ''}
                 />
 
-                {loaded ? (
-                    // <SocialIcon
-                    //     icon={theme === 'dark' ? faSun : faMoon}
-                    //     action={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                    //     tooltip={`Toggle to ${theme === 'dark' ? 'light' : 'dark'} mode!`}
-                    // />
-                    <ThemeToggle />
-                ) : (
-                    <React.Fragment />
-                )}
+                {loaded ? <ThemeToggle /> : <React.Fragment />}
             </div>
         </header>
     );

@@ -1,0 +1,27 @@
+name: Update Skin
+
+on:
+    schedule:
+        - cron: '0 0 * * 1'
+    workflow_dispatch:
+
+jobs:
+    update:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Update the skin file
+              run: 'curl https://crafatar.com/skins/7e366123-6beb-48ec-b6e1-47dbd319f41d.png > public/minecraft/skin.png'
+
+            - name: Update the cape file
+              run: 'curl https://api.capes.dev/img/b0a74f614d775fdecf5ed2fc21c6cb35a703fc0fc1a8aa93e5d1fa59c255b70b1c805cc04b35eb373d41521bcb931d0e2809df27d4a525dec5ece9ce1bf89c50 > public/minecraft/cape.png'
+
+            - name: Add the new files to the repo
+              run: git add .
+
+            - name: Commit change to the repo
+              run: 'git -c user.email="41898282+github-actions[bot]@users.noreply.github.com" -c user.name="github-actions[bot]" commit -am "chore(public): update minecraft skins"'
+
+            - name: Push changes to the repo
+              run: git push origin main
