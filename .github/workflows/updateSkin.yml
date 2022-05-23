@@ -17,11 +17,22 @@ jobs:
             - name: Update the cape file
               run: 'curl https://api.capes.dev/img/b0a74f614d775fdecf5ed2fc21c6cb35a703fc0fc1a8aa93e5d1fa59c255b70b1c805cc04b35eb373d41521bcb931d0e2809df27d4a525dec5ece9ce1bf89c50 > public/minecraft/cape.png'
 
+            - name: Check if the files have changed
+              uses: tj-actions/verify-changed-files@v9
+              id: verify-changed-files
+              with:
+                  files: |
+                      public/minecraft/cape.png
+                      public/minecraft/skin.png
+
             - name: Add the new files to the repo
+              if: steps.verify-changed-files.outputs.files_changed == 'true'
               run: git add .
 
             - name: Commit change to the repo
+              if: steps.verify-changed-files.outputs.files_changed == 'true'
               run: 'git -c user.email="41898282+github-actions[bot]@users.noreply.github.com" -c user.name="github-actions[bot]" commit -am "chore(public): update minecraft skins"'
 
             - name: Push changes to the repo
+              if: steps.verify-changed-files.outputs.files_changed == 'true'
               run: git push origin main

@@ -10,6 +10,7 @@
         "**/node_modules": true,
         "**/pnpm-lock.yaml": true,
         "**/next-env.d.ts": true,
-        "**/.eslintrc.json": true
+        "**/.eslintrc.json": true,
+        "**/.vercel": true
     }
 }
