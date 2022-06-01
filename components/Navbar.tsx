@@ -44,6 +44,7 @@ const Navbar: NextPage = () => {
                 <NavbarLink path="/" content="Home" />
                 <NavbarLink path="/about" content="About Me" />
                 <NavbarLink path="/social" content="Social" />
+                <NavbarLink path="/blog" content="Blog" />
             </ul>
 
             <div

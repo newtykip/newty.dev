@@ -1,18 +1,48 @@
 import type { NextPage } from 'next';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import Song from '@contexts/Song';
-import MinecraftSkin from '@components/MinecraftSkin';
+import {
+    createOrbitControls,
+    SkinViewer as SkinRenderer,
+    WalkingAnimation,
+    IdleAnimation
+} from 'skinview3d';
+import config from '@utils/config';
 
 const Home: NextPage = () => {
     const currentSong = useContext(Song);
+    const canvas = useRef<HTMLCanvasElement>();
+
+    useEffect(() => {
+        // Prepare the Minecraft skin renderer
+        const skin: string = `${config.baseUrl}/minecraft/skin.png`;
+        const cape: string = `${config.baseUrl}/minecraft/cape.png`;
+
+        const renderer = new SkinRenderer({
+            canvas: canvas.current,
+            width: 256,
+            height: 320,
+            skin,
+            cape,
+            zoom: 1
+        });
+
+        const control = createOrbitControls(renderer);
+
+        control.enableRotate = true;
+        control.enableZoom = false;
+
+        renderer.animations.add(WalkingAnimation);
+        renderer.animations.add(IdleAnimation);
+    }, []);
 
     return (
         <React.Fragment>
             <div className="items-center justify-between mb-8">
-                <MinecraftSkin />
+                <canvas ref={canvas} className="skin h-64 w-80" />
             </div>
 
             <div className="mb-24 items-center justify-between">

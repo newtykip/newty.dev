@@ -20,6 +20,8 @@ const About: NextPage = () => {
                 Hi, I'm <span className="rainbow">newt!</span>
             </h1>
 
+            <br></br>
+
             <span className="subheading text-xl">I do stuff on the internet sometimes.</span>
 
             <h2 className="heading text-3xl mt-10">

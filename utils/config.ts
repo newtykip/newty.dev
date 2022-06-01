@@ -24,6 +24,9 @@ export default {
         },
         minecraft: {
             uuid: '7e366123-6beb-48ec-b6e1-47dbd319f41d'
+        },
+        devTo: {
+            apiKey: process.env.DEVTO_API_KEY
         }
     },
     endpoints: {
@@ -39,6 +42,9 @@ export default {
         },
         steam: {
             getId: 'https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1'
+        },
+        devTo: {
+            getArticles: 'https://dev.to/api/articles/me'
         }
     }
 };

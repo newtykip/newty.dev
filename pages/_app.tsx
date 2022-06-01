@@ -18,6 +18,7 @@ import Osu from '@contexts/Osu';
 import Favicon from 'react-favicon';
 import Head from 'next/head';
 import { ThemeProvider } from 'next-themes';
+import Blog from '@contexts/Blog';
 
 const App: NextPage<AppProps> = ({ Component, pageProps }) => {
     const [currentSong, setCurrentSong] = useState<Song>(null);
@@ -27,6 +28,7 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
     const [recentStar, setRecentStar] = useState<StarData>(null);
     const [osuRank, setOsuRank] = useState<number>(null);
     const [recentGame, setRecentGame] = useState<Game>();
+    const [articles, setArticles] = useState<any[]>();
 
     const updateSong = async () => {
         const { artists, name, url } = await fetch(`${window.location.origin}/api/spotify`).then(
@@ -112,6 +114,13 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
                 }
             });
 
+        // Fetch blog posts
+        fetch(`${config.baseUrl}/api/posts`)
+            .then(res => res.json())
+            .then(res => {
+                setArticles(res);
+            });
+
         // Keep track of the current song
         updateSong();
         setInterval(updateSong, 10000);
@@ -136,11 +145,13 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
                         <GitHub.Provider value={{ repoCount, recentCommit, recentStar }}>
                             <Osu.Provider value={osuRank}>
                                 <Steam.Provider value={recentGame}>
-                                    <div className="max-w-screen-lg mx-auto px-6 py-4 md:px-4 md:py-10 text-center">
-                                        <Navbar />
-                                        <Component {...pageProps} />
-                                        <Footer />
-                                    </div>
+                                    <Blog.Provider value={articles}>
+                                        <div className="max-w-screen-lg mx-auto px-6 py-4 md:px-4 md:py-10 text-center">
+                                            <Navbar />
+                                            <Component {...pageProps} />
+                                            <Footer />
+                                        </div>
+                                    </Blog.Provider>
                                 </Steam.Provider>
                             </Osu.Provider>
                         </GitHub.Provider>
