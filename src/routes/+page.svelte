@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { description, title } from "../metadata";
+	import { description, title, media } from "../stores";
 	import { ExternalLinkIcon } from "svelte-feather-icons";
 	import "../styles/index.css";
 
@@ -88,44 +88,66 @@
 </script>
 
 <main>
-	<button id="cat" on:click={toggle_cat} tabindex={-1}>
-		<p>.----------------.</p>
-		<p>| |\__/,|   (`\  |</p>
-		<p>| |_ _  |.--.) ) |</p>
-		{#if cat_open}
-			<p>| ( T   )     )  |</p>
-		{/if}
-	</button>
-	
-	<div id="taskbar">
-		<button on:click={toggle_taskbar} tabindex={-1}>
-			<p>.----</p>
-			<p>| {#if taskbar_open}-{:else}+{/if} |</p>
-			<p>'----</p>
+	{#if $media.landscape }
+		<button id="cat" on:click={toggle_cat} tabindex={-1}>
+			<p>.----------------.</p>
+			<p>| |\__/,|   (`\  |</p>
+			<p>| |_ _  |.--.) ) |</p>
+			{#if cat_open}
+				<p>| ( T   )     )  |</p>
+			{/if}
 		</button>
-		<div>
-			<p>----------------.</p>
-			<p>&nbsp;<b>newty<button on:click={mouse => mouse.button === 0 ? shift_colour() : shift_colour(true)} tabindex={-1} class="inline" style="color: {colour};">.dev</button></b>      |</p>
-			<p>----------------'</p>
+		
+		<div id="taskbar">
+			<button on:click={toggle_taskbar} tabindex={-1}>
+				<p>.----</p>
+				<p>| {#if taskbar_open}-{:else}+{/if} |</p>
+				<p>'----</p>
+			</button>
+			<div>
+				<p>----------------.</p>
+				<p>&nbsp;<b>newty<button on:click={mouse => mouse.button === 0 ? shift_colour() : shift_colour(true)} tabindex={-1} class="inline" style="color: {colour};">.dev</button></b>      |</p>
+				<p>----------------'</p>
+			</div>
 		</div>
-	</div>
-	
-	{#if taskbar_open}
-		<div id="socials">
-			{#each socials as social, i}
-				<p>
-					| {i} | <a href={social.url} target={social.external ? "_blank" : "_self"}>
+		
+		{#if taskbar_open}
+			<div id="socials">
+				{#each socials as social, i}
+					<p>
+						| {i} | <a href={social.url} target={social.external ? "_blank" : "_self"}>
+							{social.name}
+							{#if social.external}
+								<ExternalLinkIcon class="inline absolute mt-1" />
+							{/if}
+						</a>
+						{" ".repeat(13 - social.name.length)}|
+					</p>
+				{/each}
+				<p>'--------------------'</p>
+			</div>
+		{/if}
+	{:else}
+		<p class="">
+			{` /\\_/\\  
+( o.o ) 
+ > ^ <`}
+		</p>
+
+		<p class="font-semibold my-5">newty.dev</p>
+
+		{#each socials as social}
+				<p class="mb-1">
+					<a href={social.url}>
 						{social.name}
 						{#if social.external}
-							<ExternalLinkIcon class="inline absolute mt-1.5" />
+							<ExternalLinkIcon class="inline absolute mt-1" />
 						{/if}
 					</a>
-					{" ".repeat(13 - social.name.length)}|
 				</p>
-			{/each}
-			<p>'--------------------'</p>
-		</div>
+		{/each}
 	{/if}
 </main>
+
 
 <svelte:body on:keyup|preventDefault={key_up} />

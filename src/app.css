@@ -6,7 +6,6 @@
 
 body {
 	@apply bg-base font-mono text-text select-none flex flex-col place-items-center min-h-full;
-	min-width: 320px;
 }
 
 main {
@@ -14,5 +13,5 @@ main {
 }
 
 p {
-	@apply md:text-3xl text-3xl whitespace-pre mt-0 pt-0;
+	@apply text-3xl whitespace-pre mt-0 pt-0;
 }

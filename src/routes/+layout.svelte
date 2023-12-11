@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.css';
-	import { title, description } from '../metadata';
+	import { title, description } from '../stores';
 </script>
 
 <svelte:head>
