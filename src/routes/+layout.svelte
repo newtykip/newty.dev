@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from "svelte";
 	import "../app.css";
 	import { title, description, icon } from "../lib/stores";
 </script>
@@ -20,6 +19,4 @@
 	<title>{$title}</title>
 </svelte:head>
 
-<div class="px-20">
-	<slot />
-</div>
+<slot />

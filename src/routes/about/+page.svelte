@@ -11,8 +11,7 @@
 	let song = writable<Song | null>();
 	let time = writable(dayjs().tz("Europe/London"));
 	const media = watchMedia({
-		landscape: "(orientation: landscape) and (min-width: 1500px) and (min-height: 700px)",
-		back_button: "(min-height: 500px)"
+		landscape: "(orientation: landscape) and (min-width: 1500px) and (min-height: 700px)"
 	});
 
 	$title = "newt! - about";
@@ -58,7 +57,15 @@
 	})
 </script>
 
-<main class="h-[90vh] pt-10">
+{#if !$media.landscape}
+	<header class="md:ml-20 md:my-20 ml-8 my-10">
+		<a href="/">
+			<ArrowLeftIcon size="36" />
+		</a>
+	</header>
+{/if}
+
+<main class="mx-20 {!$media.landscape ? "mb-20" : "mt-40"}">
 	{#if $media.landscape}
 	<div class="grid grid-cols-2">
 		<p class="md:text-3xl text-xl whitespace-pre">
@@ -80,7 +87,7 @@
 				{#if $song}
 					<a href={$song.url}>{$song.artist} - {$song.name}</a>
 				{:else}
-					Not currently listening!
+					Fetching...
 				{/if}
 			</p>
 			<p>
@@ -106,11 +113,6 @@
 ( T   )     /
 (((^_(((/(((_/
 			</p>
-			{#if $media.back_button === false}
-				<a class="text-right" href="/">
-					<ArrowLeftIcon size="36" />
-				</a>
-			{/if}
 		</div>
 	{/if}
 	
@@ -121,9 +123,9 @@
 	</p>
 </main>
 
-{#if $media.landscape || $media.back_button}
-	<footer>
-		<a class="text-right" href="/">
+{#if $media.landscape}
+	<footer class="absolute bottom-16 left-20">
+		<a href="/">
 			<ArrowLeftIcon size="36" />
 		</a>
 	</footer>

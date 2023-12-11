@@ -15,20 +15,26 @@
 		await starred;
 	});
 
-	const socials = [
+	interface Social {
+		name: string;
+		url: string;
+		external: boolean;
+	}
+
+	const socials: Social[] = [
 		{
 			name: "About Me",
 			url: "/about",
 			external: false
 		},
 		{
-			name: "Projects",
-			url: "/projects",
-			external: false
-		},
-		{
 			name: "GitHub",
 			url: urls.github,
+			external: true
+		},
+		{
+			name: "Codeberg",
+			url: urls.codeberg,
 			external: true
 		},
 		{
@@ -48,7 +54,7 @@
 		},
 		{
 			name: "YouTube",
-			urls: urls.youtube,
+			url: urls.youtube,
 			external: true
 		}
 	];
