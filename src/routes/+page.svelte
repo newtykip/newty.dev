@@ -1,9 +1,13 @@
 <script lang="ts">
-	import { media } from "$lib/stores";
 	import game from "$lib/stores/game";
 	import starred from "$lib/stores/starred";
 	import urls from "$lib/urls";
 	import { onMount } from "svelte";
+	import watchMedia from "svelte-media";
+
+	const media = watchMedia({
+		landscape: "(orientation: landscape)",
+	})
 
 	onMount(async () => {
 		// cache about page data before it is needed

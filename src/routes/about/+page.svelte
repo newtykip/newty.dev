@@ -1,14 +1,19 @@
 <script lang="ts">
 	import { ArrowLeftIcon, ClockIcon, Gamepad2Icon, MusicIcon, StarIcon } from "lucide-svelte";
-	import { title, age, media } from "$lib/stores";
+	import { title, age } from "$lib/stores";
 	import { onMount } from "svelte";
 	import { writable } from "svelte/store";
 	import dayjs from "$lib/dayjs";
 	import game from "$lib/stores/game";
 	import starred from "$lib/stores/starred";
+	import watchMedia from "svelte-media";
 	
 	let song = writable<Song | null>();
 	let time = writable(dayjs().tz("Europe/London"));
+	const media = watchMedia({
+		landscape: "(orientation: landscape) and (min-width: 1500px) and (min-height: 700px)",
+		back_button: "(min-height: 500px)"
+	});
 
 	$title = "newt! - about";
 
@@ -53,7 +58,7 @@
 	})
 </script>
 
-<main class="h-[90vh]">
+<main class="h-[90vh] pt-10">
 	{#if $media.landscape}
 	<div class="grid grid-cols-2">
 		<p class="md:text-3xl text-xl whitespace-pre">
@@ -94,26 +99,35 @@
 		</div>
 	</div>
 	{:else}
-		<p class="md:text-3xl text-xl whitespace-pre">
+		<div class="grid grid-cols-2">
+			<p class="md:text-3xl text-xl whitespace-pre">
 |\__/,|   (`\
 |_ _  |.--.) )
 ( T   )     /
 (((^_(((/(((_/
-		</p>
+			</p>
+			{#if $media.back_button === false}
+				<a class="text-right" href="/">
+					<ArrowLeftIcon size="36" />
+				</a>
+			{/if}
+		</div>
 	{/if}
 	
-	<h1 class="lg:text-4xl md:text-6xl text-4xl font-semibold my-5">about me</h1>
+	<h1 class="md:text-4xl text-4xl font-semibold my-5">about me</h1>
 	
-	<p class="lg:text-2xl md:text-4xl text-2xl">
-		I am newt! I'm a {age} year old mathematician and computer scientist with {age - 9} years of experience programming.
+	<p class="md:text-2xl text-2xl">
+		I am newt! I'm a {age} year old mathematician and computer scientist with {age - 9} years of experience programming. I'll write the rest of this later (:
 	</p>
 </main>
 
-<footer>
-	<a href="/">
-		<ArrowLeftIcon size="36" />
-	</a>
-</footer>
+{#if $media.landscape || $media.back_button}
+	<footer>
+		<a class="text-right" href="/">
+			<ArrowLeftIcon size="36" />
+		</a>
+	</footer>
+{/if}
 
 <style lang="postcss">
 	a {

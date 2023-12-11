@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 body {
-	@apply bg-base font-mono text-text select-none flex flex-col min-h-full place-items-center;
+	@apply bg-base font-mono text-text flex flex-col min-h-full place-items-center;
 }
 
 main {
