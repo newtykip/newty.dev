@@ -1,13 +1,18 @@
-import { env } from '$env/dynamic/private';
+import { env } from "$env/dynamic/private";
 
 const spotify = {
-    clientId: env.SPOTIFY_CLIENT_ID,
-    clientSecret: env.SPOTIFY_CLIENT_SECRET,
-    refreshToken: env.SPOTIFY_REFRESH_TOKEN
+	client_id: env.SPOTIFY_CLIENT_ID,
+	client_secret: env.SPOTIFY_CLIENT_SECRET,
+}
+
+const lastfm = {
+	username: "newtykip",
+	api_key: env.LASTFM_API
 };
 
-export { spotify };
+export { lastfm, spotify };
 
 export default {
-    spotify
+	lastfm,
+	spotify
 };

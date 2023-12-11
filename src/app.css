@@ -11,3 +11,7 @@ body {
 main {
 	@apply leading-none flex flex-col justify-center gap-0;
 }
+
+svg {
+	@apply inline;
+}

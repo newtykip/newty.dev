@@ -1,8 +1,8 @@
-import humanizeDuration from 'humanize-duration';
+import humanizeDuration from "humanize-duration";
 
 export default function humanise(ms: number) {
-    return humanizeDuration(ms, {
-        round: true,
-        conjunction: ' and '
-    });
+	return humanizeDuration(ms, {
+		round: true,
+		conjunction: " and "
+	});
 }

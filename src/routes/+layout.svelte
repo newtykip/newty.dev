@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import '../app.css';
-	import { title, description, icon } from '../lib/stores';
+	import { onMount } from "svelte";
+	import "../app.css";
+	import { title, description, icon } from "../lib/stores";
 </script>
 
 <svelte:head>
