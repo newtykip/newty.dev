@@ -1,6 +1,7 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import '../app.css';
-	import { title, description } from '../stores';
+	import { title, description, icon } from '../lib/stores';
 </script>
 
 <svelte:head>
@@ -10,6 +11,7 @@
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content={$title} />
 	<meta property="og:description" content={$description} />
+	<meta property="og:image" content="/{$icon}" />
 
 	<meta property="twitter:card" content="summary_large_image" />
 	<meta property="twitter:title" content={$title} />
@@ -18,4 +20,6 @@
 	<title>{$title}</title>
 </svelte:head>
 
-<slot />
+<div class="px-20">
+	<slot />
+</div>

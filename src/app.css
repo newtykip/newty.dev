@@ -5,13 +5,9 @@
 @tailwind utilities;
 
 body {
-	@apply bg-base font-mono text-text select-none flex flex-col place-items-center min-h-full;
+	@apply bg-base font-mono text-text select-none flex flex-col min-h-full place-items-center;
 }
 
 main {
-	@apply leading-none flex flex-col justify-center h-screen gap-0;
-}
-
-p {
-	@apply text-3xl whitespace-pre mt-0 pt-0;
+	@apply leading-none flex flex-col justify-center gap-0;
 }
