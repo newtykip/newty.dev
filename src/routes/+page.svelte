@@ -1,6 +1,7 @@
 <script lang="ts">
 	import game from "$lib/stores/game";
 	import starred from "$lib/stores/starred";
+	import song from "$lib/stores/song";
 	import urls from "$lib/urls";
 	import { onMount } from "svelte";
 	import watchMedia from "svelte-media";
@@ -13,6 +14,7 @@
 		// cache about page data before it is needed
 		await game;
 		await starred;
+		await song;
 	});
 
 	interface Social {

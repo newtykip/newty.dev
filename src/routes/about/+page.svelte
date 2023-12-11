@@ -2,52 +2,27 @@
 	import { ArrowLeftIcon, ClockIcon, Gamepad2Icon, MusicIcon, StarIcon } from "lucide-svelte";
 	import { title, age } from "$lib/stores";
 	import { onMount } from "svelte";
-	import { writable } from "svelte/store";
+	import { get, writable } from "svelte/store";
 	import dayjs from "$lib/dayjs";
 	import game from "$lib/stores/game";
 	import starred from "$lib/stores/starred";
+	import song, {type Song} from "$lib/stores/song";
 	import watchMedia from "svelte-media";
 	
-	let song = writable<Song | null>();
 	let time = writable(dayjs().tz("Europe/London"));
 	const media = watchMedia({
 		landscape: "(orientation: landscape) and (min-width: 1500px) and (min-height: 700px)"
 	});
 
 	$title = "newt! - about";
-
-	interface Song {
-		artist: string;
-		name: string;
-		url: string;
-	}
-
-	const update_song = async (): Promise<Song | null> => {
-		const data = await fetch("/api/playing").then((res) => res.json());
-
-		if (data?.name) {
-			let { name, url } = data;
-
-			return {
-				artist: data.artists[0].name,
-				name,
-				url
-			};
-		}
-
-		return null;
-	}
+	let current_song = writable<Song | null>(null);
 
 	onMount(async () => {
-		if ($media.landscape) {
-			song.set(await update_song());
-		}
-
-		setInterval(async () => {
-			if ($media.landscape) {
-				song.set(await update_song())
+		song.subscribe(async song => {
+			if (song) {
+				current_song.set(await song)
 			}
-		}, 5000);
+		});
 
 		setInterval(() => {
 			if ($media.landscape) {
@@ -82,27 +57,30 @@
 	`--'   `--'
 		</p>
 		<div class="flex flex-col gap-3 text-2xl text-right">
+			<!-- {#await song then song}
 			<p>
 				<MusicIcon />
-				{#if $song}
-					<a href={$song.url}>{$song.artist} - {$song.name}</a>
-				{:else}
-					Fetching...
-				{/if}
+					<a href={song.url}>{song.artist} - {song.name}</a>
 			</p>
+			{/await} -->
 			<p>
 				<ClockIcon /> {$time.format("DD/MM/YY, h:mm a")} UTC{$time.utcOffset() != 0 ? `+${$time.utcOffset() / 60}` : ''}
 			</p>
-			{#await game then game}
+			{#await get(game) then game}
 				<p>
-					<Gamepad2Icon /> <a href={game.url} target="_blank">{game.name}</a>
+					<Gamepad2Icon /> <a href={game?.url} target="_blank">{game?.name}</a>
 				</p>
 			{/await}
-			{#await starred then starred}
+			{#await get(starred) then starred}
 				<p>
-					<StarIcon class="fill-white" /> <a href={starred.url}>{starred.repo}</a>
+					<StarIcon class="fill-white" /> <a href={starred?.url}>{starred?.repo}</a>
 				</p>
 			{/await}
+			{#if $current_song}
+				<p>
+					<MusicIcon /> <a href={$current_song?.url}>{$current_song?.artist} - {$current_song?.name}</a>
+				</p>
+			{/if}
 		</div>
 	</div>
 	{:else}
