@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ArrowLeftIcon, ClockIcon, Gamepad2Icon, MusicIcon, StarIcon } from "lucide-svelte";
+	import { ArrowLeftIcon, ClockIcon, CoinsIcon, Gamepad2Icon, MusicIcon, StarIcon } from "lucide-svelte";
 	import { title, age } from "$lib/stores";
 	import { onMount } from "svelte";
 	import { get, writable } from "svelte/store";
@@ -8,6 +8,8 @@
 	import starred from "$lib/stores/starred";
 	import song, {type Song} from "$lib/stores/song";
 	import watchMedia from "svelte-media";
+	import donation from "$lib/stores/donation";
+	import currency_symbol from 'currency-symbol-map';
 	
 	let time = writable(dayjs().tz("Europe/London"));
 	const media = watchMedia({
@@ -57,14 +59,8 @@
 	`--'   `--'
 		</p>
 		<div class="flex flex-col gap-3 text-2xl text-right">
-			<!-- {#await song then song}
 			<p>
-				<MusicIcon />
-					<a href={song.url}>{song.artist} - {song.name}</a>
-			</p>
-			{/await} -->
-			<p>
-				<ClockIcon /> {$time.format("DD/MM/YY, h:mm a")} UTC{$time.utcOffset() != 0 ? `+${$time.utcOffset() / 60}` : ''}
+				<ClockIcon /> {$time.format("DD/MM/YY, h:mm a")} (UTC{$time.utcOffset() != 0 ? `+${$time.utcOffset() / 60}` : ''})
 			</p>
 			{#await get(game) then game}
 				<p>
@@ -73,7 +69,7 @@
 			{/await}
 			{#await get(starred) then starred}
 				<p>
-					<StarIcon class="fill-white" /> <a href={starred?.url}>{starred?.repo}</a>
+					<StarIcon /> <a href={starred?.url}>{starred?.repo}</a>
 				</p>
 			{/await}
 			{#if $current_song}
@@ -81,6 +77,11 @@
 					<MusicIcon /> <a href={$current_song?.url}>{$current_song?.artist} - {$current_song?.name}</a>
 				</p>
 			{/if}
+			{#await get(donation) then donation}
+				<p>
+					<CoinsIcon /> <a href={`https://ko-fi.com/home/coffeeshop?txid=${donation?.id}`}>{donation?.name} ({currency_symbol(donation?.currency ?? "")}{donation?.amount})</a>
+				</p>
+			{/await}
 		</div>
 	</div>
 	{:else}

@@ -10,9 +10,20 @@ const lastfm = {
 	api_key: env.LASTFM_API
 };
 
-export { lastfm, spotify };
+const kofi = {
+	verification: env.KOFI_VERIFICATION
+};
+
+const vercel = {
+	config_id: env.EDGE_CONFIG_ID,
+	api_key: env.VERCEL_API,
+};
+
+export { lastfm, spotify, kofi, vercel };
 
 export default {
 	lastfm,
-	spotify
+	spotify,
+	kofi,
+	vercel
 };

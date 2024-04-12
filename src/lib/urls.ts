@@ -1,6 +1,6 @@
 export default {
 	api: {
-		lastfm: "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks"
+		lastfm: "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks",
 	},
 
 	steam: "https://steamcommunity.com/id/newtykins",
