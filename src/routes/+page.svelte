@@ -91,6 +91,7 @@
 	const key_up = (e: KeyboardEvent) => {
 		switch (e.key) {
 			case "Enter":
+			case " ":
 				toggle_taskbar();
 				break;
 
