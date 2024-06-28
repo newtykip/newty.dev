@@ -1,6 +1,5 @@
 import { env } from "$env/dynamic/private";
 import { kofi, vercel } from "$lib/credentials";
-import type { Donation } from "$lib/stores/donation";
 import { json, type RequestHandler } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async () => {

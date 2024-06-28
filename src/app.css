@@ -5,13 +5,13 @@
 @tailwind utilities;
 
 body {
-	@apply select-none bg-base font-mono text-text flex flex-col min-h-full place-items-center;
-}
-
-main {
-	@apply leading-none flex flex-col justify-center gap-0;
+	@apply select-none bg-base font-mono text-text flex flex-col place-items-center;
 }
 
 svg {
-	@apply inline;
+	@apply inline relative bottom-[1.75px];
+}
+
+a.hover {
+	@apply hover:text-gray-400;
 }

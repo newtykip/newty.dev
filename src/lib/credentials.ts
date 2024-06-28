@@ -2,8 +2,8 @@ import { env } from "$env/dynamic/private";
 
 const spotify = {
 	client_id: env.SPOTIFY_CLIENT_ID,
-	client_secret: env.SPOTIFY_CLIENT_SECRET,
-}
+	client_secret: env.SPOTIFY_CLIENT_SECRET
+};
 
 const lastfm = {
 	username: "newtykip",
@@ -16,7 +16,7 @@ const kofi = {
 
 const vercel = {
 	config_id: env.EDGE_CONFIG_ID,
-	api_key: env.VERCEL_API,
+	api_key: env.VERCEL_API
 };
 
 export { lastfm, spotify, kofi, vercel };

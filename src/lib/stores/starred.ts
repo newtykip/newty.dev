@@ -9,7 +9,7 @@ export default cache<Starred>(
 	"starred",
 	36000,
 	async () =>
-		await fetch("https://api.github.com/users/newtykins/starred")
+		await fetch(`https://api.github.com/users/newtykip/starred`)
 			.then((res) => res.json())
 			.then((res) => {
 				const [recent] = res;

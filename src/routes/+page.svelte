@@ -2,9 +2,10 @@
 	import game from "$lib/stores/game";
 	import starred from "$lib/stores/starred";
 	import song from "$lib/stores/song";
-	import urls from "$lib/urls";
 	import { onMount } from "svelte";
 	import watchMedia from "svelte-media";
+	import Domain from "$lib/components/Domain.svelte";
+	import { links } from "$lib/consts";
 
 	const media = watchMedia({
 		landscape: "(orientation: landscape)",
@@ -17,78 +18,12 @@
 		await song;
 	});
 
-	interface Social {
-		name: string;
-		url: string;
-		external: boolean;
-	}
-
-	const socials: Social[] = [
-		{
-			name: "About Me",
-			url: "/about",
-			external: false
-		},
-		{
-			name: "GitHub",
-			url: urls.github,
-			external: true
-		},
-		{
-			name: "Codeberg",
-			url: urls.codeberg,
-			external: true
-		},
-		{
-			name: "Discord",
-			url: urls.discord,
-			external: true
-		},
-		{
-			name: "Steam",
-			url: urls.steam,
-			external: true
-		},
-		{
-			name: "Twitch",
-			url: urls.twitch,
-			external: true
-		},
-		{
-			name: "YouTube",
-			url: urls.youtube,
-			external: true
-		}
-	];
-
-	const colours = [
-		"inherit",
-		"#f38ba8", // RED
-		"#eba0ac", // ORANGE
-		"#f9e2af", // YELLOW
-		"#a6e3a1", // GREEN
-		"#74c7ec", // CYAN
-		"#89b4fa", // BLUE
-		"#cba6f7", // PURPLE
-		"#f5c2e7" // PINK
-	];
-
-	let colour_index = 0;
 	$: cat_open = false;
 	$: taskbar_open = false;
-	$: colour = colours[0];
-
 	const toggle_cat = () => (cat_open = !cat_open);
 	const toggle_taskbar = () => (taskbar_open = !taskbar_open);
 
-	const shift_colour = (backwards: boolean = false) => {
-		colour_index += backwards ? -1 : 1;
-		if (backwards && colour_index < 0) colour_index = colours.length - 1;
-		if (!backwards && colour_index >= colours.length) colour_index = 0;
-		colour = colours[colour_index];
-	};
-
-	const key_up = (e: KeyboardEvent) => {
+	const key_down = (e: KeyboardEvent) => {
 		switch (e.key) {
 			case "Enter":
 			case " ":
@@ -98,21 +33,16 @@
 			case "c":
 				toggle_cat();
 				break;
-
-			case "k":
-				shift_colour();
-				break;
-
-			case "j":
-				shift_colour(true);
-				break;
 		}
 	};
 </script>
 
-<main class="h-screen">
+<main class="flex flex-col justify-center gap-0 pt-20">
 	{#if $media.landscape}
 		<button class="text-right cursor-pointer" on:click={toggle_cat} tabindex={-1}>
+			{#if !cat_open}
+				<p class="fill"></p>
+			{/if}
 			<p>.----------------.</p>
 			<p>| |\__/,|   (`\  |</p>
 			<p>| |_ _  |.--.) ) |</p>
@@ -129,60 +59,68 @@
 			</button>
 			<div>
 				<p>----------------.</p>
-				<p>&nbsp;<b>newty<button class="text-green cursor-pointer inline" on:click={mouse => mouse.button === 0 ? shift_colour() : shift_colour(true)} tabindex={-1} style="color: {colour};">.dev</button></b>      |</p>
+				<p class="font-bold">&nbsp;<Domain />      |</p>
 				<p>----------------'</p>
 			</div>
 		</div>
-
-		{#if taskbar_open}
-			<div id="socials">
-				{#each socials as social, i}
+		<div>
+			{#each links as { endpoint, main }, i}
+				{#if taskbar_open && main}
 					<p>
-						| {i} | <a class="text-green" href={social.url} target={social.external ? "_blank" : "_self"}>
-							{social.name}
+						| {i} | <a class="text-green" href={`/${endpoint}`}>
+							{main}
 						</a>
-						{" ".repeat(14 - social.name.length)}|
+						{" ".repeat(14 - main.length)}|
 					</p>
-				{/each}
-				<p>'--------------------'</p>
-			</div>
-		{/if}
-	{:else if $media.landscape === false}
-		<button class="cursor-pointer" on:click={toggle_cat} tabindex={-1}>
-			<p>&nbsp;/\_/\</p>
-			<p>
-				{#if cat_open}
-					( o.o )
-				{:else}
-					( -.- )
+				{:else if main}
+					<p class="fill"></p>
 				{/if}
+			{/each}
+			{#if taskbar_open}
+				<p>'--------------------'</p>
+			{:else}
+				<p class="fill"></p>
+			{/if}
+		</div>
+	{:else if $media.landscape === false}
+		<div class="text-center">
+			<button class="cursor-pointer mb-4" on:click={toggle_cat} tabindex={-1}>
+				<p>&nbsp;/\_/\</p>
+				<p>
+					&nbsp;{#if cat_open}
+						( o.o )
+					{:else}
+						( -.- )
+					{/if}
+				</p>
+				<p>&nbsp;&gt; ^ &lt;</p>
+			</button>
+	
+			<p class="font-semibold mb-7">
+				<Domain />
 			</p>
-			<p>&nbsp;&gt; ^ &lt;</p>
-		</button>
-
-		<p class="font-semibold my-7">
-			newty<button
-				class="text-green cursor-pointer inline"
-				on:click={(mouse) => (mouse.button === 0 ? shift_colour() : shift_colour(true))}
-				tabindex={-1}
-				style="color: {colour};">.dev</button
-			>
-		</p>
-
-		{#each socials as social}
-			<p class="mb-3">
-				<a href={social.url} class="text-green">
-					{social.name}
-				</a>
-			</p>
-		{/each}
+	
+			{#each links as { endpoint, main }}
+				{#if main}
+					<p>
+						<a href={`/${endpoint}`} class="text-green">
+							{main}
+						</a>
+					</p>
+				{/if}
+			{/each}
+		</div>
 	{/if}
 </main>
 
-<svelte:body on:keyup|preventDefault={key_up} />
+<svelte:body on:keydown={key_down} />
 
 <style lang="postcss">
 	p {
 		@apply xl:text-5xl lg:text-6xl md:text-4xl text-3xl whitespace-pre mt-0 pt-0;
+	}
+
+	p.fill {
+		@apply xl:min-h-12 lg:min-h-[3.75rem] md:min-h-9 min-h-[1.875rem];
 	}
 </style>

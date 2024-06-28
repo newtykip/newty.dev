@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ArrowLeftIcon, ClockIcon, CoinsIcon, Gamepad2Icon, MusicIcon, StarIcon } from "lucide-svelte";
+	import { Clock, Coins, Gamepad2, Music, Star } from "lucide-svelte";
 	import { title, age } from "$lib/stores";
 	import { onMount } from "svelte";
 	import { get, writable } from "svelte/store";
@@ -34,84 +34,57 @@
 	})
 </script>
 
-{#if !$media.landscape}
-	<header class="md:ml-20 md:my-20 ml-8 my-10">
-		<a href="/">
-			<ArrowLeftIcon size="36" />
-		</a>
-	</header>
-{/if}
-
-<main class="mx-20 {!$media.landscape ? "mb-20" : "mt-40"}">
-	{#if $media.landscape}
+<main class="{$media.landscape ? "mt-20" : "mt-10"} w-[85vw]">
 	<div class="grid grid-cols-2">
-		<p class="md:text-3xl text-xl whitespace-pre">
-,-.       _,---._ __  / \
-/  )    .-'       `./ /   \
-(  (   ,'            `/    /|
-\  `-"             \'\   / |
-	`.              ,  \ \ /  |
-	/`.          ,'-`----Y   |
-	(            ;        |   '
-	|  ,-.    ,-'         |  /
-	|  | (   |            | /
-	)  |  \  `.___________|/
-	`--'   `--'
-		</p>
-		<div class="flex flex-col gap-3 text-2xl text-right">
-			<p>
-				<ClockIcon /> {$time.format("DD/MM/YY, h:mm a")} (UTC{$time.utcOffset() != 0 ? `+${$time.utcOffset() / 60}` : ''})
-			</p>
-			{#await get(game) then game}
-				<p>
-					<Gamepad2Icon /> <a href={game?.url} target="_blank">{game?.name}</a>
-				</p>
-			{/await}
-			{#await get(starred) then starred}
-				<p>
-					<StarIcon /> <a href={starred?.url}>{starred?.repo}</a>
-				</p>
-			{/await}
-			{#if $current_song}
-				<p>
-					<MusicIcon /> <a href={$current_song?.url}>{$current_song?.artist} - {$current_song?.name}</a>
-				</p>
-			{/if}
-			{#await get(donation) then donation}
-				<p>
-					<CoinsIcon /> <a href={`https://ko-fi.com/home/coffeeshop?txid=${donation?.id}`}>{donation?.name} ({currency_symbol(donation?.currency ?? "")}{donation?.amount})</a>
-				</p>
-			{/await}
-		</div>
-	</div>
-	{:else}
-		<div class="grid grid-cols-2">
+		<div>
 			<p class="md:text-3xl text-xl whitespace-pre">
 |\__/,|   (`\
 |_ _  |.--.) )
 ( T   )     /
 (((^_(((/(((_/
 			</p>
+			<h1 class="md:text-4xl text-4xl font-semibold my-5">about me</h1>
 		</div>
-	{/if}
+		{#if $media.landscape}
+			<div class="flex flex-col gap-3 text-2xl text-right">
+				<p>
+					<Clock class="text-peach" /> {$time.format("DD/MM/YY, h:mm a")} (UTC{$time.utcOffset() != 0 ? `+${$time.utcOffset() / 60}` : ''})
+				</p>
+				{#await get(game) then game}
+					<p>
+						<Gamepad2 class="text-blue" /> <a href={game?.url} class="hover" target="_blank">{game?.name}</a>
+					</p>
+				{/await}
+				{#await get(starred) then starred}
+					<p>
+						<Star class="text-yellow" /> <a href={starred?.url} class="hover" target="_blank">{starred?.repo}</a>
+					</p>
+				{/await}
+				{#if $current_song}
+					<p>
+						<Music class="text-mauve" /> <a href={$current_song?.url} class="hover" target="_blank">{$current_song?.artist} - {$current_song?.name}</a>
+					</p>
+				{/if}
+				{#await get(donation) then donation}
+					<p>
+						<Coins class="text-green" /> <a href={`https://ko-fi.com/home/coffeeshop?txid=${donation?.id}`} class="hover" target="_blank">{donation?.name} ({currency_symbol(donation?.currency ?? "")}{donation?.amount})</a>
+					</p>
+				{/await}
+			</div>
+		{/if}
+	</div>
 	
-	<h1 class="md:text-4xl text-4xl font-semibold my-5">about me</h1>
+	<p class="content">
+		I am newt! I'm a {age} year old mathematician and computer scientist with {age - 9} years of experience programming.
+	</p>
 	
-	<p class="md:text-2xl text-2xl">
-		I am newt! I'm a {age} year old mathematician and computer scientist with {age - 9} years of experience programming. I'll write the rest of this later (:
+	<p class="content">
+		I'll write the rest of this later (:
 	</p>
 </main>
 
-{#if $media.landscape}
-	<footer class="absolute bottom-16 left-20">
-		<a href="/">
-			<ArrowLeftIcon size="36" />
-		</a>
-	</footer>
-{/if}
-
 <style lang="postcss">
-	a {
-		@apply hover:underline;
+	p.content {
+		@apply text-2xl mt-10;
 	}
 </style>
