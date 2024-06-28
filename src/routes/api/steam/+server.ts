@@ -1,5 +1,5 @@
+import { urls } from "$lib/consts";
 import { json, type RequestHandler } from "@sveltejs/kit";
-import urls from "$lib/urls";
 import { load } from "cheerio";
 
 export const GET: RequestHandler = async () => {

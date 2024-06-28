@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Clock, Coins, Gamepad2, Music, Star } from "lucide-svelte";
-	import { title, age } from "$lib/stores";
+	import { title, age } from "$lib/stores/index";
 	import { onMount } from "svelte";
 	import { get, writable } from "svelte/store";
 	import dayjs from "$lib/dayjs";

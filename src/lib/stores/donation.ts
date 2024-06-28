@@ -1,5 +1,4 @@
-import cache from "$lib/cache"
-import urls from "$lib/urls";
+import cache from "$lib/cache";
 
 export interface Donation {
 	name: string;
@@ -8,17 +7,15 @@ export interface Donation {
 	id: string;
 }
 
-export default cache<Donation>(
-	"donation",
-	36000,
-	async () => {
-		const { name, amount, currency, id } = await fetch(`${urls.domain}/api/donation`).then((res) => res.json());
+export default cache<Donation>("donation", 36000, async () => {
+	const { name, amount, currency, id } = await fetch(`${window.location.origin}/api/donation`).then(
+		(res) => res.json()
+	);
 
-		return {
-			name,
-			amount,
-			currency,
-			id
-		}
-	}
-)
+	return {
+		name,
+		amount,
+		currency,
+		id
+	};
+});

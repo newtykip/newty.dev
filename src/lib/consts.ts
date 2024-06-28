@@ -15,3 +15,11 @@ export const links: Link[] = [
 		endpoint: "about"
 	}
 ];
+
+export const urls = {
+	api: {
+		lastfm: "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks"
+	},
+
+	steam: "https://steamcommunity.com/id/newtykip"
+};

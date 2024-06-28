@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import "../app.css";
-	import { title, description, icon } from "$lib/stores";
+	import { title, description, icon } from "$lib/stores/index";
 	import colour from "$lib/stores/colour";
 	import Navbar from "$lib/components/Navbar.svelte";
 	import { ArrowLeft, ArrowRight } from "lucide-svelte";
